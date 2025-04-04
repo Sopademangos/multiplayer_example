@@ -89,5 +89,5 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="MarginContainer3"]
 layout_mode = 2
 theme_type_variation = &"Title"
-text = "ola
+text = "Online menu test
 "
