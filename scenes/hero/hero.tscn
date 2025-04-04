@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bao31fg0iuauf"]
 
 [ext_resource type="Script" uid="uid://dbb5lq6vtvcwg" path="res://scenes/hero/hero.gd" id="1_1cpic"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_3pgml"]
 [ext_resource type="Texture2D" uid="uid://clkq82pluubdu" path="res://scenes/hero/sprites/idle-001.png" id="2_tqfqc"]
 [ext_resource type="Script" path="res://scenes/hero/weapon.gd" id="3_tqfqc"]
+[ext_resource type="Texture2D" uid="uid://5j6pfrgttwfo" path="res://scenes/hero/Sword--001.png" id="4_tqfqc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjjdy"]
 size = Vector2(32, 51)
@@ -13,7 +13,7 @@ radius = 16.0
 height = 51.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vriq7"]
-size = Vector2(76, 17.5)
+size = Vector2(80.5, 22)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjjdy"]
 bg_color = Color(0.0604907, 0.404959, 0, 1)
@@ -44,12 +44,13 @@ shape = SubResource("CapsuleShape2D_g48mx")
 script = ExtResource("3_tqfqc")
 
 [node name="skin" type="Sprite2D" parent="Arma"]
-position = Vector2(79, -3)
-scale = Vector2(0.626953, 0.152344)
-texture = ExtResource("2_3pgml")
+position = Vector2(89, -3)
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("4_tqfqc")
 
 [node name="body" type="CollisionShape2D" parent="Arma"]
-position = Vector2(79, -3.25)
+position = Vector2(91.75, -2)
 shape = SubResource("RectangleShape2D_vriq7")
 
 [node name="Life" type="ProgressBar" parent="."]
