@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dnhtqy88efs1i"]
 
 [ext_resource type="Script" uid="uid://dr0mda1wj4xbw" path="res://scenes/enemies/enemy.gd" id="1_luycg"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_pvwrt"]
+[ext_resource type="Texture2D" uid="uid://cxe0a5mn8dbco" path="res://scenes/enemies/Slime--001.png" id="2_8e3ao"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luycg"]
 size = Vector2(108, 111)
@@ -21,7 +21,8 @@ script = ExtResource("1_luycg")
 
 [node name="Skin" type="Sprite2D" parent="."]
 modulate = Color(0.839433, 0.110566, 0.110566, 1)
-texture = ExtResource("2_pvwrt")
+scale = Vector2(4, 4)
+texture = ExtResource("2_8e3ao")
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://cfbh38jckga8g"]
+[gd_scene load_steps=7 format=4 uid="uid://cfbh38jckga8g"]
 
 [ext_resource type="Texture2D" uid="uid://c3c750hxvcp34" path="res://assets/Free Dungeon - Fantasy Dreamland/Free Dungeon - Fantasy Dreamland/16x16/FD_Dungeon_Free.png" id="1_e0t7h"]
 [ext_resource type="PackedScene" uid="uid://bao31fg0iuauf" path="res://scenes/hero/hero.tscn" id="2_hjsbj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hjsbj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4c5vn"]
 texture = ExtResource("1_e0t7h")
@@ -218,8 +220,9 @@ texture = ExtResource("1_e0t7h")
 30:8/0 = 0
 31:8/0 = 0
 3:9/0 = 0
-4:9/0 = 0
+3:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:9/0 = 0
+5:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:9/0 = 0
 7:9/0 = 0
 11:9/0 = 0
@@ -595,8 +598,12 @@ texture = ExtResource("1_e0t7h")
 29:23/0 = 0
 30:23/0 = 0
 31:23/0 = 0
+4:9/0 = 0
+4:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.899294, 8, -0.899294, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_txuj8"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_hjsbj")
 sources/0 = SubResource("TileSetAtlasSource_4c5vn")
 
 [sub_resource type="Environment" id="Environment_hjsbj"]
