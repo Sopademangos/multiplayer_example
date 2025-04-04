@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://ln3g58ik2rt0"]
+[gd_scene load_steps=2 format=3 uid="uid://ln3g58ik2rt0"]
 
-[node name="Mage" type="Node2D"]
+[ext_resource type="Script" uid="uid://qmpbmu273trf" path="res://scenes/mage/mage.gd" id="1_p8pxf"]
+
+[node name="Mage" type="Node"]
+script = ExtResource("1_p8pxf")
