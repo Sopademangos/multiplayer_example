@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://b3d3p0vrshxno"]
+[gd_scene load_steps=5 format=4 uid="uid://b3d3p0vrshxno"]
 
 [ext_resource type="Texture2D" uid="uid://c3c750hxvcp34" path="res://assets/Free Dungeon - Fantasy Dreamland/Free Dungeon - Fantasy Dreamland/16x16/FD_Dungeon_Free.png" id="1_80vhd"]
+[ext_resource type="PackedScene" uid="uid://bao31fg0iuauf" path="res://scenes/hero/hero.tscn" id="2_hjsbj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjsbj"]
 texture = ExtResource("1_80vhd")
@@ -607,3 +608,6 @@ tile_set = SubResource("TileSet_cwqvt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(886, 282)
+
+[node name="Hero" parent="." instance=ExtResource("2_hjsbj")]
+position = Vector2(260, 166)
