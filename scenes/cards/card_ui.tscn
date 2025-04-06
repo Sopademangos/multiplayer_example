@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcyxs6nke1073"]
+
+[ext_resource type="Script" uid="uid://dpsitbblitrkn" path="res://scenes/cards/card_ui.gd" id="1_eq0vs"]
+
+[node name="CardUI" type="CanvasLayer"]
+script = ExtResource("1_eq0vs")
+
+[node name="GameView" type="TextureRect" parent="."]
+offset_right = 980.0
+offset_bottom = 475.0
+
+[node name="CardContainer" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.174
+anchor_top = 0.5
+anchor_right = 0.174
+anchor_bottom = 0.5
+offset_left = -83.52
+offset_top = -135.0
+offset_right = 525.48
+offset_bottom = 276.0
+alignment = 1
+
+[node name="ManaContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_top = 0.074
+anchor_right = 0.007
+anchor_bottom = 0.148
+offset_left = 4.0
+offset_top = 213.02
+offset_right = 40.64
+offset_bottom = 247.04
+
+[node name="ManaLabel" type="Label" parent="ManaContainer"]
+layout_mode = 2
+
+[node name="ManaProgress" type="ProgressBar" parent="ManaContainer"]
+layout_mode = 2
+
+[node name="TargetingCursor" type="TextureRect" parent="."]
+offset_left = 308.0
+offset_top = 226.0
+offset_right = 348.0
+offset_bottom = 266.0
