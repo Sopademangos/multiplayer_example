@@ -1,6 +1,4 @@
 extends Node
-
-
 # Villain controller properties
 @export var max_mana := 10
 @export var current_mana := 3
@@ -17,7 +15,6 @@ var hero  # This would reference the hero character
 func _ready():
 	# Initialize the card UI
 	card_ui.initialize(self)
-	
 	# Get references to the game world and hero
 	# This assumes the villain controller is a child of the main game scene
 	game_world = get_parent()
