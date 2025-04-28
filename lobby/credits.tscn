@@ -81,14 +81,21 @@ anchor_left = 0.5
 anchor_top = 0.1
 anchor_right = 0.5
 anchor_bottom = 0.1
-offset_left = -314.5
-offset_right = 314.5
-offset_bottom = 290.0
+offset_left = -314.0
+offset_right = 315.0
+offset_bottom = 478.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 bbcode_enabled = true
-text = "[center]
+text = "
+[center]
+[b]Developers[/b]
+Antonio Cormatches
+Nicolas
+Jorge Contreras
+Nicolas Espinoza
 [b]Lobby[/b]
 Elías Zelada
-[/center]"
+[/center]
+"
