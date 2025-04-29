@@ -1,20 +1,89 @@
-extends Node2D
+extends Area2D
 
 @onready var body: CollisionShape2D = $body
 @onready var skin: Sprite2D = $skin
 
 @export var damage: int = 20
+@export var swing_cooldown: float = 0.2  # Cooldown del swing
+@export var swing_angle: float = 120.0  # Angulo de la espada
+@export var swing_duration: float = 0.2  # Furacion del swing
+
+var can_attack: bool = true
+var is_attacking: bool = false
+var base_rotation: float = 0.0
+var swing_timer: float = 0.0
+var start_angle: float = 0.0
+var end_angle: float = 0.0
+
+func _ready():
+	# Important: Disable monitoring at start so weapon doesn't deal damage continuously
+	monitoring = false
+	monitorable = false
+	
+	# Connect the body_entered signal if not already connected
+	if not is_connected("body_entered", _on_body_entered):
+		connect("body_entered", _on_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
-		var target_angle = (get_global_mouse_position() - global_position).angle()
-		var new_rotation = lerp_angle(rotation, target_angle, 6.5*delta)
-		rotation = new_rotation
-		_update_weapon_rotation.rpc(new_rotation)
+		if is_attacking:
+			# Animacion de la espada
+			swing_timer += delta
+			var progress = swing_timer / swing_duration
+			
+			if progress <= 1.0:
+				# Interpollar entre la posicion inicial y final
+				var current_angle = lerp_angle(start_angle, end_angle, progress)
+				rotation = current_angle
+			
+			# terminamos
+			if progress >= 1.0:
+				is_attacking = false
+				monitoring = false
+				monitorable = false
+				swing_timer = 0.0
+				
+				# Cooldown para no espamear
+				await get_tree().create_timer(swing_cooldown).timeout
+				can_attack = true
+		else:
+			# Follow mouse when not attacking
+			var target_angle = (get_global_mouse_position() - global_position).angle()
+			base_rotation = lerp_angle(rotation, target_angle, 6.5 * delta)
+			rotation = base_rotation
+			_update_weapon_rotation.rpc(base_rotation)
+		
+		# Handle attack input
+		if Input.is_action_just_pressed("attack") and can_attack and !is_attacking:
+			swing()
 
-#func setup(player_data: Statics.PlayerData):
-	#set_multiplayer_authority(player_data.id)
+func swing():
+	can_attack = false
+	is_attacking = true
+	swing_timer = 0.0
+	
+	# Guardamos la rotacion del momento
+	base_rotation = rotation
+	
+	#El arco de daño de la espada seria de unos 120 grados, 60 a la iza y 60 a la der
+	var half_angle = swing_angle / 2.0 * PI / 180.0
+	start_angle = base_rotation - half_angle  # Empezamos a la izquierda de la posicion inicial
+	end_angle = base_rotation + half_angle    # Terminamos al final
+	
+	# Colisiones solo cuando estamos moviendo la espada
+	monitoring = true
+	monitorable = true
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy") and is_attacking:
+		# Daño al enemigo
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
+		# Alternatively, use the _health method if that's what your enemy uses
+		elif body.has_method("_health"):
+			body._health(damage)
 
 @rpc("call_local")
 func _update_weapon_rotation(new_rotation: float):
-	rotation = new_rotation
+	if !is_attacking:  # Actualizar cuando no estamos atacando
+		rotation = new_rotation
