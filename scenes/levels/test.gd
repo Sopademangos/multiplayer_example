@@ -18,3 +18,5 @@ extends Node2D
 	#var enemy_inst = enemy_scene.instantiate()
 	#enemies_node.add_child(enemy_inst)
 	#
+	
+	

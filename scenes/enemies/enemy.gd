@@ -98,6 +98,11 @@ func _on_collision_area_entered(_area: Area2D) -> void:
 		knock_back = true
 		enemy_direction = _area.global_position
 
+# Function to check if the enemy is alive
+func is_alive() -> bool:
+	return life.value > 0
+
+
 func _on_timer_timeout() -> void:
 	nav_agent.target_position = players.get_child(0).global_position
 	timer.start()
