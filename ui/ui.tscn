@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://wjdyavf8jvq4"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="DeathScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DeathScreen"]
+layout_mode = 0
+offset_right = 236.0
+offset_bottom = 123.0
+bbcode_enabled = true
+text = "[center][shake rate=5 level=5]THE HERO HAS FALLEN![/shake]"
+scroll_active = false
+
+[node name="Label" type="Label" parent="DeathScreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DeathButtons" type="VBoxContainer" parent="DeathScreen"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 31.0
+offset_right = 125.0
+offset_bottom = 70.0
+
+[node name="Restart" type="Button" parent="DeathScreen/DeathButtons"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="DeathScreen/DeathButtons"]
+layout_mode = 2
+text = "Quit"

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://b3d3p0vrshxno"]
+[gd_scene load_steps=6 format=4 uid="uid://b3d3p0vrshxno"]
 
 [ext_resource type="Texture2D" uid="uid://c3c750hxvcp34" path="res://assets/Free Dungeon - Fantasy Dreamland/16x16/FD_Dungeon_Free.png" id="1_80vhd"]
+[ext_resource type="Script" uid="uid://da0tckgk08wsq" path="res://levels/level.gd" id="1_cwqvt"]
 [ext_resource type="PackedScene" uid="uid://bao31fg0iuauf" path="res://scenes/players/hero.tscn" id="2_hjsbj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjsbj"]
@@ -600,6 +601,7 @@ texture = ExtResource("1_80vhd")
 sources/0 = SubResource("TileSetAtlasSource_hjsbj")
 
 [node name="level" type="Node2D"]
+script = ExtResource("1_cwqvt")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
