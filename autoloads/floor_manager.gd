@@ -34,12 +34,13 @@ func enemy_spawned():
 		print("Enemy spawned. Remaining: ", enemies_remaining)
 
 # Called when an enemy is defeated (server only)
-func enemy_defeated():
+func enemy_defeated(): #Al llegar al piso máximo y pasarlo debemos colocar una pantalla de victoria para el héroe y de derrota para el villano
 	if multiplayer.is_server() and !is_changing_floor:
 		enemies_remaining -= 1
 		print("Enemy defeated. Remaining: ", enemies_remaining)
 		if enemies_remaining <= 0:
-			floor_completed.emit()
+			return true
+			#floor_completed.emit()
 
 # Load a random floor scene (server only)
 func load_random_floor():
@@ -74,12 +75,11 @@ func reposition_players():
 	var players = root.get_node_or_null("Players")
 	
 	if spawns and players and spawns.get_child_count() >= 2 and players.get_child_count() >= 2:
-		var hero = players.get_node_or_null("Hero")
-		var villain = players.get_node_or_null("Villian")
+		var _hero = players.get_node_or_null("Hero")
+		var _villain = players.get_node_or_null("Villian")
 		
-		if hero and spawns.get_child_count() > 0:
-			hero.global_position = spawns.get_child(0).global_position
-		
+		if _hero and spawns.get_child_count() > 0:
+			_hero.global_position = spawns.get_child(0).global_position
 
 
 # Handle floor completion (server only)

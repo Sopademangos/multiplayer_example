@@ -15,8 +15,6 @@ func _ready() -> void:
 	
 	quit.pressed.connect(func(): get_tree().quit())
 	host.pressed.connect(func(): 
-		# Start the game with a random floor
-		FloorManager.start_game()
 		get_tree().change_scene_to_file("res://lobby/host_screen.tscn")
 	)
 	join.pressed.connect(func(): get_tree().change_scene_to_file("res://lobby/join_screen.tscn"))

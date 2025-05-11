@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@onready var death_scene: Control = $"../../CanvasLayer/DeathScene"
+@onready var animation_death_scene: AnimationPlayer = $"../../CanvasLayer/DeathScene/AnimationPlayer"
+
 @onready var skin: Sprite2D = $Skin
 @onready var body: CollisionShape2D = $Body
 @onready var area_daño: Area2D = $Area_daño
@@ -89,8 +92,8 @@ func start_dash(direction, delta):
 	await get_tree().create_timer(0.7).timeout
 	dash_cooldown = false
 	area_daño.monitoring = true
-	arma.monitorable = true
-	arma.monitoring = true
+	#arma.monitorable = true
+	#arma.monitoring = true
 	collision_layer |= 2
 	collision_mask |= 2
 
@@ -99,13 +102,18 @@ func _send_data(pos: Vector2, flip_h: bool, hp: float) -> void:
 	position = lerp(position, pos, 0.5)
 	skin.flip_h = flip_h
 	life.value = hp
-	if life.value <= 0:
-		queue_free()
+
+@rpc("unreliable_ordered")
+func _trigger_death() -> void:
+	death_scene.visible = true
+	animation_death_scene.play("fade_in")
+	queue_free()
 
 func _health(_damage):
 	life.value -= _damage
 	if life.value <= 0:
-		queue_free()
+		_trigger_death()
+		_trigger_death.rpc()
 
 func _on_area_daño_body_entered(_body: Node2D) -> void:
 	if _body.is_in_group("enemy"):

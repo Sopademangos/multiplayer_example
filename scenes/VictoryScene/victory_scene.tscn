@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpbv1uyxsx1tr"]
+[gd_scene load_steps=6 format=3 uid="uid://cery44522rywn"]
 
-[ext_resource type="Script" uid="uid://d304kpuv3rldw" path="res://scenes/DeathScene/death_scene.gd" id="1_dwtax"]
+[ext_resource type="Script" uid="uid://cu2wjnilr0ahh" path="res://scenes/VictoryScene/victory_scene.gd" id="1_i8nys"]
 
 [sub_resource type="Animation" id="Animation_8paxp"]
 length = 0.001
@@ -56,7 +56,7 @@ _data = {
 &"fade_out": SubResource("Animation_bgr5r")
 }
 
-[node name="DeathScene" type="Control"]
+[node name="VictoryScene" type="Control"]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -64,7 +64,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_dwtax")
+script = ExtResource("1_i8nys")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -83,7 +83,7 @@ libraries = {
 layout_mode = 0
 offset_right = 481.0
 offset_bottom = 272.0
-text = "Te han derrotado"
+text = "El héroe te ha derrotado"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -91,7 +91,7 @@ vertical_alignment = 1
 layout_mode = 0
 offset_right = 481.0
 offset_bottom = 272.0
-text = "Has derrotado al héroe"
+text = "Has vencido al Dungeon Master"
 horizontal_alignment = 1
 vertical_alignment = 1
 

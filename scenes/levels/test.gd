@@ -8,7 +8,10 @@ extends Node2D
 @onready var spawns: Node2D = $Spawns
 
 # Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
+func _ready() -> void:
+	# Start the game with a random floor
+	#FloorManager.start_game()
+	pass
 	#for i in Game.players.size():
 		#var player = Game.players[i]
 		#var player_inst = player_scene.instantiate()

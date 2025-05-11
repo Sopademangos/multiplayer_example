@@ -6,7 +6,7 @@ extends Area2D
 @export var damage: int = 20
 @export var swing_cooldown: float = 0.2  # Cooldown del swing
 @export var swing_angle: float = 120.0  # Angulo de la espada
-@export var swing_duration: float = 0.2  # Furacion del swing
+@export var swing_duration: float = 0.2  # Duracion del swing
 
 var can_attack: bool = true
 var is_attacking: bool = false
@@ -19,10 +19,7 @@ func _ready():
 	# Important: Disable monitoring at start so weapon doesn't deal damage continuously
 	monitoring = false
 	monitorable = false
-	
-	# Connect the body_entered signal if not already connected
-	if not is_connected("body_entered", _on_body_entered):
-		connect("body_entered", _on_body_entered)
+	connect("body_entered", _on_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -32,9 +29,10 @@ func _physics_process(delta: float) -> void:
 			var progress = swing_timer / swing_duration
 			
 			if progress <= 1.0:
-				# Interpollar entre la posicion inicial y final
+				# Interpolar entre la posicion inicial y final
 				var current_angle = lerp_angle(start_angle, end_angle, progress)
 				rotation = current_angle
+				_update_weapon_rotation.rpc(rotation)
 			
 			# terminamos
 			if progress >= 1.0:
@@ -65,7 +63,7 @@ func swing():
 	# Guardamos la rotacion del momento
 	base_rotation = rotation
 	
-	#El arco de daño de la espada seria de unos 120 grados, 60 a la iza y 60 a la der
+	#El arco de daño de la espada sería de unos 120 grados, 60 a la izq y 60 a la der
 	var half_angle = swing_angle / 2.0 * PI / 180.0
 	start_angle = base_rotation - half_angle  # Empezamos a la izquierda de la posicion inicial
 	end_angle = base_rotation + half_angle    # Terminamos al final
@@ -74,16 +72,10 @@ func swing():
 	monitoring = true
 	monitorable = true
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy") and is_attacking:
-		# Daño al enemigo
-		if body.has_method("take_damage"):
-			body.take_damage(damage)
-		# Alternatively, use the _health method if that's what your enemy uses
-		elif body.has_method("_health"):
-			body._health(damage)
+func _on_body_entered(_body: Node2D) -> void:
+	if _body.is_in_group("enemy"):
+		_body._health(damage)
 
 @rpc("call_local")
 func _update_weapon_rotation(new_rotation: float):
-	if !is_attacking:  # Actualizar cuando no estamos atacando
-		rotation = new_rotation
+	rotation = new_rotation

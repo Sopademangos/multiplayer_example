@@ -17,10 +17,10 @@ func _ready() -> void:
 		_activated()
 
 func _activated():
-	win.visible = false
+	lose.visible = false
 	if multiplayer.get_unique_id() != 1:
-		lose.visible = false
-		win.visible = true
+		win.visible = false
+		lose.visible = true
 
 func _on_retry_pressed() -> void:
 	get_tree().paused = false

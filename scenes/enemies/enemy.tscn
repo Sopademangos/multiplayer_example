@@ -63,3 +63,8 @@ debug_enabled = true
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 60.0
+affect_navigation_mesh = true
+carve_navigation_mesh = true

@@ -18,7 +18,6 @@ func _ready() -> void:
 	if datos.nombre == "Box":
 		_life.text = "∞"
 	_coste.text = str(datos.costo)
-	scale = datos.escala
 	# Nine patch rect
 	nine_patch.texture = datos.textura
 	nine_patch.region_rect = Rect2(datos.x, datos.y, datos.w, datos.h)

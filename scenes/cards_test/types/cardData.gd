@@ -8,7 +8,7 @@ class_name CardData
 @export var daño: int
 @export var velocidad: int
 @export var icono: String
-@export var escala: Vector2 = Vector2(0.5, 0.5)
+@export var escala_de_la_figura: Vector2
 # Texture NinePatchRect
 @export var textura: Texture2D = preload("res://assets/card_container.png")
 @export var x: float = 26.0
