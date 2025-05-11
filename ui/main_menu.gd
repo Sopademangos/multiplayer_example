@@ -14,8 +14,21 @@ func _ready() -> void:
 		return
 	
 	quit.pressed.connect(func(): get_tree().quit())
-	host.pressed.connect(func(): get_tree().change_scene_to_file("res://lobby/host_screen.tscn"))
+	host.pressed.connect(func(): 
+		# Start the game with a random floor
+		FloorManager.start_game()
+		get_tree().change_scene_to_file("res://lobby/host_screen.tscn")
+	)
 	join.pressed.connect(func(): get_tree().change_scene_to_file("res://lobby/join_screen.tscn"))
 	credits.pressed.connect(func(): get_tree().change_scene_to_file("res://ui/credits.tscn"))
 	
 	host.grab_focus()
+
+# Also add this to lobby_test.gd - modify the _on_start_game_timeout function:
+func _on_start_game_timeout() -> void:
+	_start_game.rpc()
+
+@rpc("reliable", "call_local")
+func _start_game() -> void:
+	# Start with a random floor instead of loading the main scene directly
+	FloorManager.start_game()

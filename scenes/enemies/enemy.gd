@@ -21,6 +21,7 @@ var speed: int = 15000
 var knock_back = false
 var enemy_direction = Vector2()
 var figura_coll: Shape2D
+var is_dead = false
 
 func _ready() -> void:
 	area.connect("area_entered", _on_collision_area_entered)
@@ -84,12 +85,18 @@ func _send_data(pos: Vector2, flip: bool, hp: float) -> void:
 	position = lerp(position, pos, 0.5)
 	skin.flip_h = flip
 	life.value = hp
-	if life.value <= 0:
+	if life.value <= 0 and !is_dead:
+		is_dead = true
+		if is_multiplayer_authority():
+			FloorManager.enemy_defeated()
 		queue_free()
 
 func _health(_damage):
 	life.value -= _damage
-	if life.value <= 0:
+	if life.value <= 0 and !is_dead:
+		is_dead = true
+		if is_multiplayer_authority():
+			FloorManager.enemy_defeated()
 		queue_free()
 
 func _on_collision_area_entered(_area: Area2D) -> void:
