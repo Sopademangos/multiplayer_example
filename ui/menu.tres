@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dfrv1wv3x08o4"]
+
+[ext_resource type="FontFile" uid="uid://c1shg05fnn2k5" path="res://assets/fonts/AlmendraSC-Regular.ttf" id="1_dmqec"]
+
+[resource]
+default_font = ExtResource("1_dmqec")

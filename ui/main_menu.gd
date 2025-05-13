@@ -9,9 +9,9 @@ extends Control
 
 
 func _ready() -> void:
-	if Game.multiplayer_test:
-		get_tree().change_scene_to_file("res://lobby/lobby_test.tscn")
-		return
+	#if Game.multiplayer_test:
+		#get_tree().change_scene_to_file("res://lobby/lobby_test.tscn")
+		#return
 	
 	quit.pressed.connect(func(): get_tree().quit())
 	host.pressed.connect(func(): 

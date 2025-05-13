@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c3ffqu522gjgl" path="res://assets/atlas_floor-16x16.png" id="5_d5x7l"]
 [ext_resource type="PackedScene" uid="uid://blqxos8twrgxl" path="res://scenes/players/villian.tscn" id="7_vnv7o"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjsbj"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vnv7o"]
 texture = ExtResource("1_80vhd")
 1:0/0 = 0
 2:0/0 = 0
@@ -602,7 +602,7 @@ texture = ExtResource("1_80vhd")
 30:23/0 = 0
 31:23/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rtcij"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d5x7l"]
 texture = ExtResource("3_gjl0y")
 0:0/0 = 0
 1:0/0 = 0
@@ -652,7 +652,7 @@ texture = ExtResource("3_gjl0y")
 10:3/0 = 0
 11:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ukwr8"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rtcij"]
 texture = ExtResource("4_vnv7o")
 0:0/0 = 0
 1:0/0 = 0
@@ -801,7 +801,7 @@ texture = ExtResource("4_vnv7o")
 22:7/0 = 0
 23:7/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pb8y7"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ukwr8"]
 texture = ExtResource("5_d5x7l")
 0:0/0 = 0
 1:0/0 = 0
@@ -851,10 +851,10 @@ texture = ExtResource("5_d5x7l")
 
 [sub_resource type="TileSet" id="TileSet_cwqvt"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_hjsbj")
-sources/1 = SubResource("TileSetAtlasSource_rtcij")
-sources/2 = SubResource("TileSetAtlasSource_ukwr8")
-sources/3 = SubResource("TileSetAtlasSource_pb8y7")
+sources/0 = SubResource("TileSetAtlasSource_vnv7o")
+sources/1 = SubResource("TileSetAtlasSource_d5x7l")
+sources/2 = SubResource("TileSetAtlasSource_rtcij")
+sources/3 = SubResource("TileSetAtlasSource_ukwr8")
 
 [node name="level" type="Node2D"]
 script = ExtResource("1_cwqvt")
