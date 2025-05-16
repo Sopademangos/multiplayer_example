@@ -1,19 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj66nte78u87x"]
+[gd_scene load_steps=4 format=3 uid="uid://dj66nte78u87x"]
 
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_m3vk0"]
 [ext_resource type="Script" uid="uid://cuqvj8grm28qy" path="res://ui/credits.gd" id="2_hvxmk"]
+[ext_resource type="Theme" uid="uid://dfrv1wv3x08o4" path="res://ui/menu.tres" id="3_74u3g"]
 
 [node name="CreditsScreen" instance=ExtResource("1_m3vk0")]
 script = ExtResource("2_hvxmk")
 
 [node name="Label" parent="MarginContainer2/VBoxContainer/Panel" index="0"]
+theme = ExtResource("3_74u3g")
 text = "Credits"
+
+[node name="BackButton" parent="MarginContainer2/VBoxContainer/Panel" index="1"]
+theme = ExtResource("3_74u3g")
 
 [node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" index="0"]
 theme_type_variation = &"Zero"
 
 [node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" type="RichTextLabel" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" index="0"]
 layout_mode = 2
+theme = ExtResource("3_74u3g")
 bbcode_enabled = true
 text = "[center]
 [b]Game development[/b]

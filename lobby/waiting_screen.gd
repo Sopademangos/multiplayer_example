@@ -13,6 +13,7 @@ extends Control
 @onready var start_timer: Timer = $StartTimer
 @onready var game_start_container: PanelContainer = %GameStartContainer
 @onready var game_start_counter: Label = %GameStartCounter
+@onready var icono: Sprite2D = $"MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer2/Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer/VBoxContainer/PlayerTexture/icono"
 
 
 
@@ -42,6 +43,8 @@ func _ready() -> void:
 		role_button.text = Statics.get_role_name(role)
 		if role == Statics.Role.NONE:
 			role_button.text = "Role?"
+			icono.frame = 191
+			
 
 
 func _process(_delta: float) -> void:
@@ -97,6 +100,10 @@ func _update_role(role: Statics.Role) -> void:
 	Game.set_current_player_role(role)
 	role_button.text = Statics.get_role_name(role)
 	role_container.hide()
+	if role == Statics.Role.ROLE_A:
+		icono.frame = 193
+	if role == Statics.Role.ROLE_B:
+		icono.frame = 192
 
 
 func _handle_vote_updated() -> void:

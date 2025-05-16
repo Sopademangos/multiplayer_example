@@ -1,21 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb87qnq3164s5"]
+[gd_scene load_steps=5 format=3 uid="uid://bb87qnq3164s5"]
 
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_uvmm6"]
 [ext_resource type="Script" uid="uid://layh08o4sto4" path="res://lobby/host_screen.gd" id="2_l54gy"]
+[ext_resource type="Theme" uid="uid://dfrv1wv3x08o4" path="res://ui/menu.tres" id="3_d0kcq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_50f1p"]
+paragraph_spacing = 5.0
+font_size = 70
+font_color = Color(0.647059, 0.501961, 0.133333, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
 
 [node name="HostScreen" instance=ExtResource("1_uvmm6")]
 script = ExtResource("2_l54gy")
 
+[node name="Panel" parent="MarginContainer2/VBoxContainer" index="0"]
+theme = ExtResource("3_d0kcq")
+
 [node name="Label" parent="MarginContainer2/VBoxContainer/Panel" index="0"]
 text = "Host"
+label_settings = SubResource("LabelSettings_50f1p")
+
+[node name="BackButton" parent="MarginContainer2/VBoxContainer/Panel" index="1"]
+theme = ExtResource("3_d0kcq")
 
 [node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" index="0"]
 offset_left = -314.0
 offset_right = 315.0
-offset_bottom = 226.0
+offset_bottom = 215.0
 
 [node name="Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" index="0"]
 layout_mode = 2
+theme = ExtResource("3_d0kcq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer/Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer" index="0"]
 layout_mode = 2
@@ -28,17 +44,20 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer/Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer/VBoxContainer/HBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Player"
+theme = ExtResource("3_d0kcq")
+text = "Nickname"
 
 [node name="PlayerName" type="LineEdit" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer/Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer/VBoxContainer/HBoxContainer" index="1"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme = ExtResource("3_d0kcq")
 alignment = 1
 
 [node name="HostButton" type="Button" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer/Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer/VBoxContainer" index="1"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("3_d0kcq")
 text = "Host
 "
 

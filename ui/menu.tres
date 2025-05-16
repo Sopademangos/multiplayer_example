@@ -1,6 +1,39 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dfrv1wv3x08o4"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dfrv1wv3x08o4"]
 
+[ext_resource type="StyleBox" uid="uid://dshk5u5b4suen" path="res://ui/button_style.tres" id="1_4whtm"]
 [ext_resource type="FontFile" uid="uid://c1shg05fnn2k5" path="res://assets/fonts/AlmendraSC-Regular.ttf" id="1_dmqec"]
+[ext_resource type="StyleBox" uid="uid://dhubk3a706dak" path="res://ui/button_press.tres" id="1_tht5o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tht5o"]
+bg_color = Color(0.623529, 0.419608, 0, 0.392157)
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.443137, 0.298039, 0, 0.392157)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcd45"]
+bg_color = Color(0.623529, 0.419608, 0, 0.392157)
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.443137, 0.298039, 0, 0.392157)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0xud"]
+bg_color = Color(0.384314, 0.588235, 0.984314, 0)
 
 [resource]
 default_font = ExtResource("1_dmqec")
+Button/styles/disabled = SubResource("StyleBoxFlat_tht5o")
+Button/styles/disabled_mirrored = SubResource("StyleBoxFlat_rcd45")
+Button/styles/focus = ExtResource("1_tht5o")
+Button/styles/hover = ExtResource("1_tht5o")
+Button/styles/hover_pressed = ExtResource("1_tht5o")
+Button/styles/normal = ExtResource("1_4whtm")
+Button/styles/pressed = SubResource("StyleBoxFlat_j0xud")
+Label/colors/font_color = Color(0.924702, 0.6353, 0, 1)
