@@ -136,6 +136,7 @@ func _stop_timer() -> void:
 func _start_game() -> void:
 	Game.set_current_player_vote(false)
 	get_tree().change_scene_to_packed(Game.main_scene)
+	Menu.get_child(1).stop()
 
 
 func _can_start_game() -> bool:

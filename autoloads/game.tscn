@@ -18,7 +18,6 @@ metadata/_custom_type_script = "uid://bnqpng0o60r43"
 
 [node name="Game" type="Node"]
 script = ExtResource("1_fmbhi")
-multiplayer_test = true
 test_players = Array[ExtResource("2_du0e2")]([SubResource("Resource_4v8jd"), SubResource("Resource_7vqsd")])
 main_scene = ExtResource("2_hihc8")
 

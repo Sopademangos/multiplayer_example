@@ -73,7 +73,7 @@ anchor_bottom = 0.5
 offset_left = 47.0
 offset_top = 80.0
 offset_right = 1194.0
-offset_bottom = 451.0
+offset_bottom = 312.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -81,6 +81,5 @@ grow_vertical = 2
 layout_mode = 2
 theme = ExtResource("3_lsdqh")
 theme_type_variation = &"Title"
-text = "Git Gud Dungeon
-"
+text = "Git Gud Dungeon"
 label_settings = SubResource("LabelSettings_lsdqh")

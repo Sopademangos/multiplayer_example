@@ -1,20 +1,7 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dfrv1wv3x08o4"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dfrv1wv3x08o4"]
 
 [ext_resource type="FontFile" uid="uid://c1shg05fnn2k5" path="res://assets/fonts/AlmendraSC-Regular.ttf" id="1_dmqec"]
-[ext_resource type="StyleBox" uid="uid://d32epohr148uk" path="res://ui/hoverbutton.tres" id="2_4whtm"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4whtm"]
-bg_color = Color(0.588235, 0.396078, 0, 1)
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.278431, 0.180392, 0, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 2
-shadow_offset = Vector2(4, 4)
+[ext_resource type="StyleBox" uid="uid://dgpeyh4ddfg5k" path="res://ui/button_hover.tres" id="2_4whtm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmqec"]
 bg_color = Color(0.4, 0.266667, 0, 1)
@@ -36,6 +23,6 @@ Button/colors/font_color = Color(1, 0.745098, 0.352941, 1)
 Button/colors/font_focus_color = Color(1, 0.745098, 0.352941, 1)
 Button/colors/font_hover_color = Color(1, 0.784314, 0.470588, 1)
 Button/fonts/font = ExtResource("1_dmqec")
-Button/styles/focus = SubResource("StyleBoxFlat_4whtm")
+Button/styles/focus = ExtResource("2_4whtm")
 Button/styles/hover = ExtResource("2_4whtm")
 Button/styles/normal = SubResource("StyleBoxFlat_dmqec")

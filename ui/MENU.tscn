@@ -878,4 +878,3 @@ script = ExtResource("6_6ld8s")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_y5fu0")
-autoplay = true
