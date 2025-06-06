@@ -1,16 +1,17 @@
 [gd_scene load_steps=8 format=3 uid="uid://d1t5g8dnwohl4"]
 
 [ext_resource type="Script" uid="uid://uh01divimnq3" path="res://scenes/cards_test/card.gd" id="1_cab6s"]
-[ext_resource type="Texture2D" uid="uid://d30gvrwtcrtgi" path="res://assets/card_container.png" id="1_jdc34"]
-[ext_resource type="Texture2D" uid="uid://btwglum7cspd3" path="res://assets/Damage.png" id="2_qbkp2"]
-[ext_resource type="Texture2D" uid="uid://c824glfn78ksk" path="res://assets/life.png" id="3_cab6s"]
-[ext_resource type="Texture2D" uid="uid://by7ucvsh7mokx" path="res://assets/box.png" id="4_43fd8"]
-[ext_resource type="Texture2D" uid="uid://b17md32arf7h2" path="res://assets/monedas.png" id="5_qbkp2"]
+[ext_resource type="Texture2D" uid="uid://d30gvrwtcrtgi" path="res://assets/card_skins/card_container.png" id="1_jdc34"]
+[ext_resource type="Texture2D" uid="uid://btwglum7cspd3" path="res://assets/card_skins/damage.png" id="2_qbkp2"]
+[ext_resource type="Texture2D" uid="uid://c824glfn78ksk" path="res://assets/card_skins/life.png" id="3_cab6s"]
+[ext_resource type="Texture2D" uid="uid://by7ucvsh7mokx" path="res://assets/card_skins/box.png" id="4_43fd8"]
+[ext_resource type="Texture2D" uid="uid://b17md32arf7h2" path="res://assets/card_skins/coins.png" id="5_qbkp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02s2a"]
 size = Vector2(39, 55)
 
 [node name="card" type="Node2D"]
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_cab6s")
 
 [node name="Skin" type="Node2D" parent="."]

@@ -1,10 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://blqxos8twrgxl"]
+[gd_scene load_steps=5 format=3 uid="uid://blqxos8twrgxl"]
 
 [ext_resource type="Script" uid="uid://c4ksskqufau7s" path="res://scenes/players/villian.gd" id="1_066ng"]
-[ext_resource type="PackedScene" uid="uid://d1t5g8dnwohl4" path="res://scenes/cards_test/card_test.tscn" id="1_b36k6"]
-[ext_resource type="Resource" uid="uid://ot1eouv6ob73" path="res://scenes/cards_test/types/box.tres" id="3_2g2jx"]
-[ext_resource type="Resource" uid="uid://c44ghllqlx8iw" path="res://scenes/cards_test/types/beast.tres" id="5_h636d"]
-[ext_resource type="Resource" uid="uid://flbcvih1vnd5" path="res://scenes/cards_test/types/slime.tres" id="6_uncdc"]
+[ext_resource type="Script" uid="uid://g7yb5w67nxck" path="res://scenes/cards_test/deck.gd" id="2_2g2jx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02s2a"]
 bg_color = Color(0, 0, 0, 0.741176)
@@ -41,31 +38,7 @@ offset_top = -50.0
 offset_right = 433.0
 offset_bottom = 221.0
 scale = Vector2(1.2, 1.2)
-
-[node name="card" parent="Deck" instance=ExtResource("1_b36k6")]
-position = Vector2(107.5, 176.667)
-scale = Vector2(0.5, 0.5)
-datos = ExtResource("3_2g2jx")
-
-[node name="card2" parent="Deck" instance=ExtResource("1_b36k6")]
-position = Vector2(173.333, 176.667)
-scale = Vector2(0.5, 0.5)
-datos = ExtResource("5_h636d")
-
-[node name="card3" parent="Deck" instance=ExtResource("1_b36k6")]
-position = Vector2(240, 176.667)
-scale = Vector2(0.5, 0.5)
-datos = ExtResource("6_uncdc")
-
-[node name="card4" parent="Deck" instance=ExtResource("1_b36k6")]
-position = Vector2(306.667, 176.667)
-scale = Vector2(0.5, 0.5)
-datos = ExtResource("6_uncdc")
-
-[node name="card5" parent="Deck" instance=ExtResource("1_b36k6")]
-position = Vector2(373.333, 176.667)
-scale = Vector2(0.5, 0.5)
-datos = ExtResource("5_h636d")
+script = ExtResource("2_2g2jx")
 
 [node name="TextureProgressBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(350, 0)
@@ -82,3 +55,25 @@ theme_override_constants/outline_size = 6
 theme_override_styles/background = SubResource("StyleBoxFlat_02s2a")
 theme_override_styles/fill = SubResource("StyleBoxFlat_o4233")
 value = 40.0
+
+[node name="Spawn" type="Node2D" parent="."]
+
+[node name="pivot1" type="Marker2D" parent="Spawn"]
+position = Vector2(82, 162)
+scale = Vector2(1.2, 1.2)
+
+[node name="pivot2" type="Marker2D" parent="Spawn"]
+position = Vector2(161, 162)
+scale = Vector2(1.2, 1.2)
+
+[node name="pivot3" type="Marker2D" parent="Spawn"]
+position = Vector2(241, 162)
+scale = Vector2(1.2, 1.2)
+
+[node name="pivot4" type="Marker2D" parent="Spawn"]
+position = Vector2(321, 162)
+scale = Vector2(1.2, 1.2)
+
+[node name="pivot5" type="Marker2D" parent="Spawn"]
+position = Vector2(401, 162)
+scale = Vector2(1.2, 1.2)

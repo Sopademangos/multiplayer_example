@@ -1,13 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cys2kto4ormdp"]
+[gd_scene load_steps=4 format=3 uid="uid://cys2kto4ormdp"]
 
-[ext_resource type="Script" uid="uid://dr0mda1wj4xbw" path="res://scenes/enemies/enemy.gd" id="1_ot470"]
-[ext_resource type="Texture2D" uid="uid://1mftfestkety" path="res://assets/pinchos.png" id="2_ot470"]
+[ext_resource type="Texture2D" uid="uid://bahl5tuh1yrbo" path="res://assets/card_skins/snail.png" id="1_6voke"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aikwk"]
-size = Vector2(112, 116)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_pvwrt"]
-radius = 43.0029
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6voke"]
+radius = 15.0
+height = 46.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luycg"]
 bg_color = Color(0.0595984, 0.452479, 0.116303, 1)
@@ -21,24 +18,22 @@ collision_layer = 18
 collision_mask = 6
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_ot470")
 
 [node name="Skin" type="Sprite2D" parent="."]
 position = Vector2(0, -19)
 scale = Vector2(4, 4.09524)
-texture = ExtResource("2_ot470")
+texture = ExtResource("1_6voke")
 
 [node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2(0, -19)
-shape = SubResource("RectangleShape2D_aikwk")
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_6voke")
 
 [node name="Collision" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="Collision_body" type="CollisionShape2D" parent="Collision"]
-position = Vector2(0, -2.5)
-shape = SubResource("CircleShape2D_pvwrt")
+position = Vector2(0, -19)
 
 [node name="Life" type="ProgressBar" parent="."]
 offset_left = -49.0

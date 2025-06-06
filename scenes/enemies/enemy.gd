@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
-@onready var victory_scene: Control = $"../../CanvasLayer/VictoryScene"
-@onready var animation_victory_scene: AnimationPlayer = $"../../CanvasLayer/VictoryScene/AnimationPlayer"
+#Skins
+const SLIME = preload("res://assets/enemies/slime.png")
+const SMOKE_BOMB = preload("res://assets/enemies/smoke_bomb.png")
+const SNAIL = preload("res://assets/enemies/snail.png")
+const TANK = preload("res://assets/enemies/tank.png")
+const THE_BEAST = preload("res://assets/enemies/the_beast.png")
 
-@onready var player: CharacterBody2D = $"../../Hero"
 @onready var skin: Sprite2D = $Skin
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var life: ProgressBar = $Life
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
@@ -13,11 +17,11 @@ extends CharacterBody2D
 @export var datos: CardData
 
 @onready var players: Node2D = $"../../Players"
-@onready var area: Area2D = $Collision
-@onready var area_collision: CollisionShape2D = $Collision/Collision_body
+@onready var area: Area2D = $Area_collision
+@onready var area_collision: CollisionShape2D = $Area_collision/Collision_body
 @onready var timer: Timer = $Navigation_timer
 
-var type = 1 #Enemy y 0 Trap
+var type = 1 #0 is a Trap, 1 is the enemy and 2 is a box
 var health: int = 100
 var damage: int = 10
 var speed: int = 15000
@@ -27,6 +31,7 @@ var figura_coll: Shape2D
 var is_dead = false
 # Nos permite dañar al enemigo solo una vez por swing
 var iframes = false
+var use = 1
 
 func _ready() -> void:
 	area.connect("area_entered", _on_collision_area_entered)
@@ -35,9 +40,9 @@ func _ready() -> void:
 	life.value = health
 	FloorManager.enemy_spawned()
 
-
 func _physics_process(delta: float) -> void:
 	if type == 1 and !nav_agent.is_target_reached():
+		animation_player.play("move")
 		var target_pos = nav_agent.get_next_path_position()
 		var dir = (target_pos - global_position).normalized()
 		if dir.x > 0:
@@ -57,9 +62,12 @@ func _physics_process(delta: float) -> void:
 				velocity = dir * speed * delta
 				move_and_slide()
 				_send_data.rpc(position, skin.flip_h, life.value)
+	elif type == 2: #En caso de destruir la caja, esta desaparezca de ambas pantallas
+		_send_data.rpc(position, skin.flip_h, life.value)
+	if type != 1:
+		skin.hframes = 1
 
-
-func setup(velocidad: int, hp: int, daño: int, icono: String, tipo: int, colision: int, radio: float, altura: float, tamaño: Vector2, pos_colision: Vector2, escala_imagen: Vector2):
+func setup(nombre: String, velocidad: int, hp: int, daño: int, icono: String, tipo: int, colision: int, radio: float, altura: float, tamaño: Vector2, pos_colision: Vector2, escala_imagen: Vector2):
 	health = hp
 	damage = daño
 	speed = velocidad
@@ -67,7 +75,7 @@ func setup(velocidad: int, hp: int, daño: int, icono: String, tipo: int, colisi
 	life.max_value = health
 	life.value = health
 	type = tipo
-	if type == 0: #Podríamos eliminar la barra, el navegation agent y el timer
+	if type == 0 or type == 2: #Podríamos eliminar la barra, el navegation agent y el timer
 		FloorManager.enemy_defeated()
 		life.visible = false
 	if colision == 0:
@@ -84,39 +92,46 @@ func setup(velocidad: int, hp: int, daño: int, icono: String, tipo: int, colisi
 	area_collision.shape = figura_coll
 	collision.position = pos_colision
 	area_collision.position = pos_colision
+	if type == 0: # si es una trampa no tiene un collision shape pero si un area collision
+		area.damage = daño
+		area.type = tipo
+		area._name = nombre
+		collision.disabled = true
+		if nombre == "Bomb":
+			area_collision.disabled = true
+			area.temporizador = true
+		if nombre == "Bear Trap" or nombre == "Fire Trap":
+			skin.visible = false
 	if escala_imagen != Vector2(0.0, 0.0):
 		scale = escala_imagen
+	if nombre == "The Beast":
+		skin.texture = THE_BEAST
+	elif nombre == "Tank":
+		skin.texture = TANK
+	elif nombre == "Slime":
+		skin.texture = SLIME
+	elif nombre == "Snail":
+		skin.texture = SNAIL
 
-
-@rpc("unreliable_ordered")
+@rpc("any_peer", "call_local", "reliable")
 func _send_data(pos: Vector2, flip: bool, hp: float) -> void:
 	position = lerp(position, pos, 0.5)
 	skin.flip_h = flip
 	life.value = hp
-	if life.value <= 0 and !is_dead:
-		is_dead = true
-		#if is_multiplayer_authority():
-			#FloorManager.enemy_defeated()
+	if life.value <= 0:
 		queue_free()
 
 func _health(_damage):
 	# Ahora al enemigo solo lo podemos dañar una vez con cada swing
 	if !iframes:
 		life.value -= _damage
+		if life.value <= 0:
+			if type == 1:
+				FloorManager.enemy_defeated()
+			queue_free()
 		iframes = true
 		await get_tree().create_timer(0.2).timeout
 		iframes = false
-	if life.value <= 0 and !is_dead:
-		is_dead = true
-		if FloorManager.enemy_defeated():
-			_trigger_death()
-			_trigger_death.rpc()
-		queue_free()
-
-@rpc("unreliable_ordered")
-func _trigger_death() -> void:
-	victory_scene.visible = true
-	animation_victory_scene.play("fade_in")
 
 func _on_collision_area_entered(_area: Area2D) -> void:
 	if _area.is_in_group("hero") and type != 0:

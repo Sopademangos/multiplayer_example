@@ -3,11 +3,14 @@ extends Node2D
 @onready var enemies_node: Node2D = $"../../Enemies"
 var enemy_scene: PackedScene = preload("res://scenes/enemies/enemy.tscn")
 @onready var progress_bar: ProgressBar = $TextureProgressBar
+@onready var deck: Control = $Deck
 var fill_time = 36.0 # segundos
 
 var card_dragged = null
 var result
-var cards_on_cooldown = []
+var cards = []
+var new_card: CardData
+const card_scene = preload("res://scenes/cards_test/card_test.tscn")
 
 func _ready() -> void:
 	if Game.players[1].role == 2:
@@ -24,7 +27,7 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			var card = _check_for_card()
-			if card and card not in cards_on_cooldown:
+			if card:
 				if card == tmp_card:
 					card_dragged.scale = Vector2(0.6, 0.6)
 					tmp_card = null
@@ -40,6 +43,7 @@ func _input(event):
 				if card_dragged:
 					if result.size() < 1 and card_dragged.datos.costo*10 <= progress_bar.value:
 						_spawn_enemy.rpc(
+							card_dragged.datos.nombre,
 							card_dragged.datos.velocidad,
 							card_dragged.datos.hp,
 							card_dragged.datos.daño,
@@ -53,32 +57,31 @@ func _input(event):
 							card_dragged.datos.escala_de_la_figura,
 							get_global_mouse_position())
 						card_dragged.scale = Vector2(0.6, 0.6)
-						card_dragged.modulate = Color(0.23, 0.23, 0.23)
 						progress_bar.value -= card_dragged.datos.costo*10
-						cards_on_cooldown.append(card_dragged)
+						card_dragged.modulate = Color(0.23, 0.23, 0.23)
+						var tween = create_tween()
+						tween.tween_property(card_dragged, "position:y", 162.0+300.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+						robar_carta(card_dragged)
 						tmp_card = null
 						card = null
 						card_dragged = null
-						await get_tree().create_timer(3).timeout
-						cards_on_cooldown[0].modulate = Color(1.0, 1.0, 1.0)
-						cards_on_cooldown.pop_front()
 					else:
 						card_dragged.scale = Vector2(0.6, 0.6)
 						tmp_card = null
 						card = null
 						card_dragged = null
 
-func _process(_delta):
+func _process(delta):
 	if progress_bar.value < progress_bar.max_value:
-		progress_bar.value += (progress_bar.max_value / fill_time) * 0.05
+		progress_bar.value += (progress_bar.max_value / fill_time) * 2.5 * delta
 
 @rpc("call_local","reliable")
-func _spawn_enemy(velocidad: int, hp: int, daño: int, icono: String, tipo: int, colision: int, radio: float, altura: float, tamaño: Vector2, pos_colision: Vector2, escala_imagen: Vector2, mouse_pos: Vector2):
+func _spawn_enemy(nombre: String, velocidad: int, hp: int, daño: int, icono: String, tipo: int, colision: int, radio: float, altura: float, tamaño: Vector2, pos_colision: Vector2, escala_imagen: Vector2, mouse_pos: Vector2):
 	var enemy_inst = enemy_scene.instantiate()
 	enemy_inst.set_multiplayer_authority(1)
 	enemy_inst.position = mouse_pos
 	enemies_node.add_child(enemy_inst, true)
-	enemy_inst.setup(velocidad, hp, daño, icono, tipo, colision, radio, altura, tamaño, pos_colision, escala_imagen) # o asignás stats manualmente
+	enemy_inst.setup(nombre, velocidad, hp, daño, icono, tipo, colision, radio, altura, tamaño, pos_colision, escala_imagen) # o asignás stats manualmente
 
 func _check_for_card():
 	var space_state = get_world_2d().direct_space_state
@@ -88,7 +91,6 @@ func _check_for_card():
 	parameters.collide_with_bodies = true
 	parameters.collision_mask = 3
 	result = space_state.intersect_point(parameters)
-	#print(result)
 	if result.size() > 0:
 		var hay_colision = false
 		for colision in result:
@@ -99,3 +101,16 @@ func _check_for_card():
 		if !hay_colision:
 			return result[0].collider.get_parent()
 	return null
+
+func robar_carta(carta_usada):
+	cards.append(carta_usada.datos.ruta)
+	var node_card = card_scene.instantiate()
+	node_card.datos = load(cards.pop_front())
+	deck.add_child(node_card)
+	node_card.position = Vector2(carta_usada.position.x,162.0+300.0)
+	await get_tree().create_timer(0.15).timeout
+	carta_usada.queue_free()
+	await get_tree().create_timer(2.7).timeout
+	var tween = create_tween()
+	tween.tween_property(node_card, "position:y", 162.0, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	

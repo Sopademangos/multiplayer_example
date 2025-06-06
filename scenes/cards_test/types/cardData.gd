@@ -1,8 +1,9 @@
 extends Resource
 class_name CardData
 
+@export var ruta: String
 @export var nombre: String
-@export_enum("trap", "enemy") var tipo
+@export_enum("trap", "enemy", "box") var tipo
 @export var costo: int
 @export var hp: int
 @export var daño: int
@@ -10,7 +11,7 @@ class_name CardData
 @export var icono: String
 @export var escala_de_la_figura: Vector2
 # Texture NinePatchRect
-@export var textura: Texture2D = preload("res://assets/card_container.png")
+@export var textura: Texture2D = preload("res://assets/card_skins/card_container.png")
 @export var x: float = 26.0
 @export var y: float = 0.0
 @export var w: float = 26.0

@@ -81,6 +81,7 @@ func _update_window_placement(index: int) -> void:
 	var columns: int = ceil(sqrt(Game.players.size()))
 	var rows: int = ceil(1.0 * Game.players.size() / columns)
 	var x = index % columns
+	@warning_ignore("integer_division")
 	var y = index / columns
 	
 	var screen_rect = DisplayServer.screen_get_usable_rect()

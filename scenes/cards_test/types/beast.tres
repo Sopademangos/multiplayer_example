@@ -1,19 +1,20 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c44ghllqlx8iw"]
 
 [ext_resource type="Script" uid="uid://c2hncbjlpblkv" path="res://scenes/cards_test/types/cardData.gd" id="1_rja2v"]
-[ext_resource type="Texture2D" uid="uid://d30gvrwtcrtgi" path="res://assets/card_container.png" id="3_gxv3o"]
+[ext_resource type="Texture2D" uid="uid://d30gvrwtcrtgi" path="res://assets/card_skins/card_container.png" id="2_weyb3"]
 
 [resource]
 script = ExtResource("1_rja2v")
+ruta = "res://scenes/cards_test/types/beast.tres"
 nombre = "The Beast"
 tipo = 1
 costo = 8
 hp = 150
 "daño" = 40
 velocidad = 9000
-icono = "res://assets/enemy2.png"
+icono = "res://assets/card_skins/beast.png"
 escala_de_la_figura = Vector2(0, 0)
-textura = ExtResource("3_gxv3o")
+textura = ExtResource("2_weyb3")
 x = 52.0
 y = 26.0
 w = 26.0
@@ -23,8 +24,8 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 colision = 1
-radio = 32.0
-altura = 114.0
+radio = 24.0
+altura = 92.0
 "tamaño" = Vector2(0, 0)
-posicion_colision = Vector2(0, -10)
+posicion_colision = Vector2(0, -15)
 metadata/_custom_type_script = "uid://c2hncbjlpblkv"

@@ -87,6 +87,7 @@ pause={
 2d_physics/layer_3="walls"
 2d_physics/layer_4="Cards"
 2d_physics/layer_5="click"
+2d_physics/layer_8="arrow"
 
 [rendering]
 

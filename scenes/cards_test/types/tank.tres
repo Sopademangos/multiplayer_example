@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://mmoi8ajmpr34"]
+
+[ext_resource type="Script" uid="uid://c2hncbjlpblkv" path="res://scenes/cards_test/types/cardData.gd" id="1_pwkvl"]
+[ext_resource type="Texture2D" uid="uid://d30gvrwtcrtgi" path="res://assets/card_skins/card_container.png" id="2_f3lbw"]
+
+[resource]
+script = ExtResource("1_pwkvl")
+ruta = "res://scenes/cards_test/types/tank.tres"
+nombre = "Tank"
+tipo = 1
+costo = 10
+hp = 500
+"daño" = 30
+velocidad = 3000
+icono = "res://assets/card_skins/tank.png"
+escala_de_la_figura = Vector2(0, 0)
+textura = ExtResource("2_f3lbw")
+x = 52.0
+y = 26.0
+w = 26.0
+h = 26.0
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+colision = 1
+radio = 30.0
+altura = 88.0
+"tamaño" = Vector2(0, 0)
+posicion_colision = Vector2(0, -8)
+metadata/_custom_type_script = "uid://c2hncbjlpblkv"

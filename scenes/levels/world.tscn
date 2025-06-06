@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://e7032kf448wb"]
+
+[ext_resource type="PackedScene" uid="uid://dpbv1uyxsx1tr" path="res://scenes/DeathScene/death_scene.tscn" id="1_uj2hd"]
+[ext_resource type="Script" uid="uid://b3jju7s5w0u7v" path="res://scenes/levels/world.gd" id="1_w2p53"]
+[ext_resource type="PackedScene" uid="uid://cery44522rywn" path="res://scenes/VictoryScene/victory_scene.tscn" id="2_130mq"]
+[ext_resource type="PackedScene" uid="uid://6j8gnyrjuwkk" path="res://scenes/Menu/pause_menu.tscn" id="3_c85by"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_w2p53")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DeathScene" parent="CanvasLayer" instance=ExtResource("1_uj2hd")]
+visible = false
+
+[node name="VictoryScene" parent="CanvasLayer" instance=ExtResource("2_130mq")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_c85by")]
+process_mode = 3
+visible = false

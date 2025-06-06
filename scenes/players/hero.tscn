@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bao31fg0iuauf"]
+[gd_scene load_steps=14 format=3 uid="uid://bao31fg0iuauf"]
 
 [ext_resource type="Script" uid="uid://dbb5lq6vtvcwg" path="res://scenes/players/hero.gd" id="1_1cpic"]
-[ext_resource type="Texture2D" uid="uid://clkq82pluubdu" path="res://scenes/players/sprites/idle-001.png" id="2_tqfqc"]
+[ext_resource type="Texture2D" uid="uid://ndp2f5vmsroj" path="res://assets/Hero.png" id="2_fhkh4"]
 [ext_resource type="Script" uid="uid://bksa6jq3anl27" path="res://scenes/players/weapon.gd" id="3_tqfqc"]
 [ext_resource type="Texture2D" uid="uid://5j6pfrgttwfo" path="res://scenes/players/Sword--001.png" id="4_tqfqc"]
 
@@ -22,23 +22,98 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[node name="Hero" type="CharacterBody2D"]
-collision_layer = 18
-collision_mask = 6
+[sub_resource type="Animation" id="Animation_qvomv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cfran"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_8yuie"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_fhkh4"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8yuie"]
+_data = {
+&"RESET": SubResource("Animation_qvomv"),
+&"die": SubResource("Animation_cfran"),
+&"idle": SubResource("Animation_8yuie"),
+&"run": SubResource("Animation_fhkh4")
+}
+
+[node name="Hero" type="CharacterBody2D" groups=["hero"]]
+collision_layer = 146
+collision_mask = 134
 script = ExtResource("1_1cpic")
 
 [node name="Skin" type="Sprite2D" parent="."]
 position = Vector2(0, -29)
 scale = Vector2(4, 4)
-texture = ExtResource("2_tqfqc")
+texture = ExtResource("2_fhkh4")
+hframes = 9
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_qjjdy")
 
 [node name="Area_daño" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_daño"]
 position = Vector2(0, -0.5)
@@ -77,3 +152,6 @@ offset_bottom = 62.0
 text = "Player 1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8yuie")
+}
