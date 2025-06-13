@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://m2alhxkpsjy3"]
+[gd_scene load_steps=14 format=4 uid="uid://m2alhxkpsjy3"]
 
 [ext_resource type="Script" uid="uid://dviq3ofydeuw3" path="res://scripts/UI/parallax_background.gd" id="1_sqtmw"]
 [ext_resource type="Texture2D" uid="uid://c3c750hxvcp34" path="res://assets/Free Dungeon - Fantasy Dreamland/16x16/FD_Dungeon_Free.png" id="2_akhs7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c3ffqu522gjgl" path="res://assets/atlas_floor-16x16.png" id="5_keitr"]
 [ext_resource type="Script" uid="uid://c3aard107aaxr" path="res://scripts/UI/tilemap_assets.gd" id="6_6ld8s"]
 [ext_resource type="AudioStream" uid="uid://bqxxr0hluxdih" path="res://assets/Music/MainTheme.ogg" id="7_y5fu0"]
+[ext_resource type="AudioStream" uid="uid://dui57huch4hpt" path="res://assets/Music/loop.ogg" id="8_akhs7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vblny"]
 texture = ExtResource("2_akhs7")
@@ -876,5 +877,8 @@ scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_4m8wb")
 script = ExtResource("6_6ld8s")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Intro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_y5fu0")
+
+[node name="loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_akhs7")

@@ -137,6 +137,7 @@ func _start_game() -> void:
 	Game.set_current_player_vote(false)
 	get_tree().change_scene_to_packed(Game.main_scene)
 	Menu.get_child(1).stop()
+	Menu.get_child(2).play()
 
 
 func _can_start_game() -> bool:
