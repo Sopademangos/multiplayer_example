@@ -4,7 +4,7 @@ extends Node2D
 var enemy_scene: PackedScene = preload("res://scenes/enemies/enemy.tscn")
 @onready var progress_bar: ProgressBar = $TextureProgressBar
 @onready var deck: Control = $Deck
-var fill_time = 36.0 # segundos
+@export var fill_time = 36.0 # segundos
 
 var card_dragged = null
 var result
@@ -43,6 +43,7 @@ func _input(event):
 				if card_dragged:
 					if result.size() < 1 and card_dragged.datos.costo*10 <= progress_bar.value:
 						_spawn_enemy.rpc(
+							card_dragged.datos,
 							card_dragged.datos.nombre,
 							card_dragged.datos.velocidad,
 							card_dragged.datos.hp,

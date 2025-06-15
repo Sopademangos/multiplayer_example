@@ -24,8 +24,9 @@ func load_current_level():
 		if scene_load:
 			var instance = scene_load.instantiate()
 			add_child(instance)
+			print("Cargando escena: ", current_level)
 		else:
-			print("Error: No se pudo cargar la escena", current_level)
+			print("Error: No se pudo cargar la escena ", current_level)
 		change_floor = true
 		await get_tree().process_frame
 		change_floor = false

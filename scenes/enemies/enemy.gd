@@ -14,7 +14,7 @@ const THE_BEAST = preload("res://assets/enemies/the_beast.png")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var collision: CollisionShape2D = $Body
 
-@export var datos: CardData
+@export var datos: Resource
 
 @onready var players: Node2D = $"../../Players"
 @onready var area: Area2D = $Area_collision
@@ -22,9 +22,9 @@ const THE_BEAST = preload("res://assets/enemies/the_beast.png")
 @onready var timer: Timer = $Navigation_timer
 
 var type = 1 #0 is a Trap, 1 is the enemy and 2 is a box
-var health: int = 100
-var damage: int = 10
-var speed: int = 15000
+@export var health: int = 100
+@export var damage: int = 10
+@export var speed: int = 15000
 var knock_back = false
 var enemy_direction = Vector2()
 var figura_coll: Shape2D
@@ -75,7 +75,7 @@ func setup(nombre: String, velocidad: int, hp: int, daño: int, icono: String, t
 	life.max_value = health
 	life.value = health
 	type = tipo
-	if type == 0 or type == 2: #Podríamos eliminar la barra, el navegation agent y el timer
+	if tipo == 0 or tipo == 2: #Podríamos eliminar la barra, el navegation agent y el timer
 		FloorManager.enemy_defeated()
 		life.visible = false
 	if colision == 0:
@@ -92,7 +92,7 @@ func setup(nombre: String, velocidad: int, hp: int, daño: int, icono: String, t
 	area_collision.shape = figura_coll
 	collision.position = pos_colision
 	area_collision.position = pos_colision
-	if type == 0: # si es una trampa no tiene un collision shape pero si un area collision
+	if tipo == 0: # si es una trampa no tiene un collision shape pero si un area collision
 		area.damage = daño
 		area.type = tipo
 		area._name = nombre

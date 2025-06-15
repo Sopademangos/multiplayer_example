@@ -29,6 +29,7 @@ corner_radius_bottom_left = 10
 
 [node name="Villian" type="Node2D"]
 script = ExtResource("1_066ng")
+fill_time = 1.0
 
 [node name="Deck" type="Control" parent="."]
 layout_mode = 3

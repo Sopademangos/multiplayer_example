@@ -47,7 +47,7 @@ func enemy_defeated():
 	if !is_changing_floor:
 		enemies_remaining -= 1
 		print("Enemy defeated. Remaining: ", enemies_remaining)
-		if enemies_remaining - 1 <= 0:
+		if enemies_remaining <= 0:
 			current_floor += 1
 			await get_tree().create_timer(1.5).timeout
 			delete_current_scene.rpc()
