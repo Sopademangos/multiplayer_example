@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://b5kp73hdarvkk"]
+[gd_scene load_steps=7 format=4 uid="uid://b5kp73hdarvkk"]
 
 [ext_resource type="TileSet" uid="uid://hejt8ogxmbxf" path="res://scenes/tileset/test.tres" id="1_0a7ia"]
 [ext_resource type="PackedScene" uid="uid://dnhtqy88efs1i" path="res://scenes/enemies/enemy.tscn" id="2_d4tsa"]
 [ext_resource type="PackedScene" uid="uid://bao31fg0iuauf" path="res://scenes/players/hero.tscn" id="3_1dqem"]
+[ext_resource type="Resource" uid="uid://flbcvih1vnd5" path="res://scenes/cards_test/types/slime.tres" id="3_d4tsa"]
+[ext_resource type="Resource" uid="uid://c44ghllqlx8iw" path="res://scenes/cards_test/types/beast.tres" id="3_dlol3"]
 [ext_resource type="PackedScene" uid="uid://blqxos8twrgxl" path="res://scenes/players/villian.tscn" id="4_dlol3"]
 
 [node name="Level1_2" type="Node2D"]
@@ -15,9 +17,22 @@ tile_set = ExtResource("1_0a7ia")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("2_d4tsa")]
-position = Vector2(333, -196)
+position = Vector2(584, -36)
 collision_layer = 6
 collision_mask = 7
+datos = ExtResource("3_dlol3")
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("2_d4tsa")]
+position = Vector2(132, -236)
+collision_layer = 6
+collision_mask = 7
+datos = ExtResource("3_d4tsa")
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("2_d4tsa")]
+position = Vector2(87, 279)
+collision_layer = 6
+collision_mask = 7
+datos = ExtResource("3_d4tsa")
 
 [node name="Players" type="Node2D" parent="."]
 

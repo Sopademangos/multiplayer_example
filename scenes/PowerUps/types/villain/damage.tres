@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PowerUp" load_steps=2 format=3 uid="uid://s55rkhxeiiw3"]
+
+[ext_resource type="Script" uid="uid://cayqsr4gjyh45" path="res://scenes/PowerUps/types/powerUp.gd" id="1_lh3y4"]
+
+[resource]
+script = ExtResource("1_lh3y4")
+player = "Villain"
+habilidad = "Damage"
+info = "Minions deal +30 damage"
+damage = 30
+speed = 0
+timer_speed = 0
+health = 0
+damage_nerf = 0
+speed_nerf = 0
+metadata/_custom_type_script = "uid://cayqsr4gjyh45"

@@ -30,7 +30,8 @@ var enemy_direction = Vector2()
 var bear_trap = false
 
 func _ready() -> void:
-	life.value = health
+	life.value = health + GlobalVar.hero_health_up
+	speed += GlobalVar.hero_speed_up
 	area_daño.connect("body_entered", _on_area_daño_body_entered)
 	if Game.players[1].role == 1:
 		set_multiplayer_authority(Game.players[1].id)
@@ -103,13 +104,9 @@ func _send_data(dir, pos: Vector2, flip_h: bool, hp: float) -> void:
 
 @rpc("unreliable_ordered")
 func _trigger_death() -> void:
-	FloorManager.current_floor = 1
-	death_scene.visible = true
 	animation_player.play("die")
-	await animation_player.animation_finished
-	animation_death_scene.play("fade_in")
+	FloorManager.hero_defeated()
 	queue_free()
-
 
 func _health(_damage):
 	life.value -= _damage
@@ -131,11 +128,11 @@ func detecting_traps_areas():
 			if area.is_in_group("enemy") and area.type == 0:
 				_health(area.damage)
 				if area._name == "Bear Trap":
+					#print("valor de use de la beartrap: ", area.use)
 					bear_trap = true
 					area.bear_trap = true
 					await get_tree().create_timer(3).timeout
 					bear_trap = false
-					area.use = 0
 				else:
 					knock_back = true
 					enemy_direction = area.global_position

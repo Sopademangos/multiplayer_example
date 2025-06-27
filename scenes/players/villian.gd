@@ -17,10 +17,14 @@ func _ready() -> void:
 		set_multiplayer_authority(Game.players[1].id)
 		if multiplayer.get_unique_id() == 1:
 			visible = false
+			for card in deck.get_children():
+				card.queue_free()
 	else:
 		set_multiplayer_authority(Game.players[0].id)
 		if multiplayer.get_unique_id() != 1:
 			visible = false
+			for card in deck.get_children():
+				card.queue_free()
 
 var tmp_card = null
 func _input(event):
@@ -29,25 +33,31 @@ func _input(event):
 			var card = _check_for_card()
 			if card:
 				if card == tmp_card:
-					card_dragged.scale = Vector2(0.6, 0.6)
+					card_dragged.scale = Vector2(0.7, 0.7)
 					tmp_card = null
 					card = null
 					card_dragged = null
 				else:
 					if tmp_card:
-						tmp_card.scale = Vector2(0.6, 0.6)
+						tmp_card.scale = Vector2(0.7, 0.7)
 					card_dragged = card
 					tmp_card = card
-					card_dragged.scale = Vector2(0.65, 0.65)
+					card_dragged.scale = Vector2(0.75, 0.75)
 			else:
 				if card_dragged:
 					if result.size() < 1 and card_dragged.datos.costo*10 <= progress_bar.value:
+						var tmp_speed = card_dragged.datos.velocidad
+						var tmp_hp = card_dragged.datos.hp
+						var tmp_damage = card_dragged.datos.daño
+						if card_dragged.datos.tipo == 1:
+							tmp_speed += GlobalVar.enemy_speed_up - GlobalVar.enemy_speed_down
+							tmp_hp += GlobalVar.enemy_health_up
+							tmp_damage += GlobalVar.enemy_damage_up - GlobalVar.enemy_damage_down
 						_spawn_enemy.rpc(
-							card_dragged.datos,
 							card_dragged.datos.nombre,
-							card_dragged.datos.velocidad,
-							card_dragged.datos.hp,
-							card_dragged.datos.daño,
+							tmp_speed,
+							tmp_hp,
+							tmp_damage,
 							card_dragged.datos.icono,
 							card_dragged.datos.tipo,
 							card_dragged.datos.colision,
@@ -57,7 +67,7 @@ func _input(event):
 							card_dragged.datos.posicion_colision,
 							card_dragged.datos.escala_de_la_figura,
 							get_global_mouse_position())
-						card_dragged.scale = Vector2(0.6, 0.6)
+						card_dragged.scale = Vector2(0.7, 0.7)
 						progress_bar.value -= card_dragged.datos.costo*10
 						card_dragged.modulate = Color(0.23, 0.23, 0.23)
 						var tween = create_tween()
@@ -67,14 +77,14 @@ func _input(event):
 						card = null
 						card_dragged = null
 					else:
-						card_dragged.scale = Vector2(0.6, 0.6)
+						card_dragged.scale = Vector2(0.7, 0.7)
 						tmp_card = null
 						card = null
 						card_dragged = null
 
 func _process(delta):
 	if progress_bar.value < progress_bar.max_value:
-		progress_bar.value += (progress_bar.max_value / fill_time) * 2.5 * delta
+		progress_bar.value += ((progress_bar.max_value / fill_time) * 2.5 * delta) + GlobalVar.fill_time_down
 
 @rpc("call_local","reliable")
 func _spawn_enemy(nombre: String, velocidad: int, hp: int, daño: int, icono: String, tipo: int, colision: int, radio: float, altura: float, tamaño: Vector2, pos_colision: Vector2, escala_imagen: Vector2, mouse_pos: Vector2):
@@ -96,7 +106,7 @@ func _check_for_card():
 		var hay_colision = false
 		for colision in result:
 			var col = colision["collider"]
-			if col is StaticBody2D or col is CharacterBody2D or col is TileMapLayer:
+			if col is StaticBody2D or col is CharacterBody2D or col is TileMapLayer or col.name == "Area_daño" or col.name == "Arma":
 				hay_colision = true
 				break
 		if !hay_colision:
@@ -108,10 +118,10 @@ func robar_carta(carta_usada):
 	var node_card = card_scene.instantiate()
 	node_card.datos = load(cards.pop_front())
 	deck.add_child(node_card)
-	node_card.position = Vector2(carta_usada.position.x,162.0+300.0)
+	node_card.position = Vector2(carta_usada.position.x,140.0+300.0)
 	await get_tree().create_timer(0.15).timeout
 	carta_usada.queue_free()
 	await get_tree().create_timer(2.7).timeout
 	var tween = create_tween()
-	tween.tween_property(node_card, "position:y", 162.0, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(node_card, "position:y", 140.0, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	

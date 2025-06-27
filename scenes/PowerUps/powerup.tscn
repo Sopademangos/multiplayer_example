@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1t5g8dnwohl4"]
+
+[ext_resource type="Script" uid="uid://b7cbrer4dtanw" path="res://scenes/PowerUps/powerup.gd" id="1_qtkg2"]
+[ext_resource type="FontFile" uid="uid://cham44u3aocqe" path="res://assets/fonts/monogram.ttf" id="3_4efnp"]
+[ext_resource type="Texture2D" uid="uid://dq02vpwy5ddtr" path="res://assets/card_skins/card_container_powerup.png" id="3_t4jbu"]
+[ext_resource type="Texture2D" uid="uid://daqc2pyi8sfky" path="res://assets/card_skins/card_container_powerup2.png" id="4_iaq80"]
+
+[node name="powerUp" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_qtkg2")
+
+[node name="Label" type="RichTextLabel" parent="."]
+z_index = 1
+offset_left = -87.0
+offset_top = -135.0
+offset_right = 87.0
+offset_bottom = 127.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("3_4efnp")
+theme_override_font_sizes/normal_font_size = 28
+text = "Wait for the other player to choose a reward"
+fit_content = true
+scroll_following = true
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 171
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -96.6667
+offset_top = -145.0
+offset_right = 19.3333
+offset_bottom = 25.0
+scale = Vector2(1.65, 1.65)
+texture_normal = ExtResource("3_t4jbu")
+texture_pressed = ExtResource("3_t4jbu")
+texture_hover = ExtResource("4_iaq80")
+texture_focused = ExtResource("4_iaq80")

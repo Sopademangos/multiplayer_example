@@ -14,7 +14,7 @@ const THE_BEAST = preload("res://assets/enemies/the_beast.png")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var collision: CollisionShape2D = $Body
 
-@export var datos: Resource
+@export var datos: CardData
 
 @onready var players: Node2D = $"../../Players"
 @onready var area: Area2D = $Area_collision
@@ -22,23 +22,23 @@ const THE_BEAST = preload("res://assets/enemies/the_beast.png")
 @onready var timer: Timer = $Navigation_timer
 
 var type = 1 #0 is a Trap, 1 is the enemy and 2 is a box
+@export var boss: bool = false
 @export var health: int = 100
 @export var damage: int = 10
 @export var speed: int = 15000
 var knock_back = false
 var enemy_direction = Vector2()
 var figura_coll: Shape2D
-var is_dead = false
 # Nos permite dañar al enemigo solo una vez por swing
 var iframes = false
-var use = 1
 
 func _ready() -> void:
+	life.value = health
+	if datos:
+		setup(datos.nombre,datos.velocidad,datos.hp,datos.daño,datos.icono,datos.tipo,datos.colision,datos.radio,datos.altura,datos.tamaño,datos.posicion_colision,datos.escala_de_la_figura)
 	area.connect("area_entered", _on_collision_area_entered)
 	timer.connect("timeout", _on_timer_timeout)
 	nav_agent.target_position = players.get_child(0).global_position
-	life.value = health
-	FloorManager.enemy_spawned()
 
 func _physics_process(delta: float) -> void:
 	if type == 1 and !nav_agent.is_target_reached():
@@ -52,7 +52,10 @@ func _physics_process(delta: float) -> void:
 		
 		if knock_back:
 			var knockback_direction = (global_position - enemy_direction).normalized()
-			velocity = knockback_direction * 25000 * delta
+			if boss:
+				velocity = knockback_direction * 10000 * delta
+			else:
+				velocity = knockback_direction * 25000 * delta
 			move_and_slide()
 			_send_data.rpc(position, skin.flip_h, life.value)
 			await get_tree().create_timer(0.5).timeout
@@ -64,7 +67,7 @@ func _physics_process(delta: float) -> void:
 				_send_data.rpc(position, skin.flip_h, life.value)
 	elif type == 2: #En caso de destruir la caja, esta desaparezca de ambas pantallas
 		_send_data.rpc(position, skin.flip_h, life.value)
-	if type != 1:
+	if type != 1  or boss:
 		skin.hframes = 1
 
 func setup(nombre: String, velocidad: int, hp: int, daño: int, icono: String, tipo: int, colision: int, radio: float, altura: float, tamaño: Vector2, pos_colision: Vector2, escala_imagen: Vector2):
@@ -75,8 +78,10 @@ func setup(nombre: String, velocidad: int, hp: int, daño: int, icono: String, t
 	life.max_value = health
 	life.value = health
 	type = tipo
-	if tipo == 0 or tipo == 2: #Podríamos eliminar la barra, el navegation agent y el timer
-		FloorManager.enemy_defeated()
+	if tipo == 1: #Podríamos eliminar la barra, el navegation agent y el timer
+		FloorManager.enemy_spawned()
+	if (tipo == 0 or tipo == 2) and !boss:
+		#FloorManager.enemy_defeated()
 		life.visible = false
 	if colision == 0:
 		figura_coll = CircleShape2D.new()
@@ -115,27 +120,41 @@ func setup(nombre: String, velocidad: int, hp: int, daño: int, icono: String, t
 
 @rpc("any_peer", "call_local", "reliable")
 func _send_data(pos: Vector2, flip: bool, hp: float) -> void:
-	position = lerp(position, pos, 0.5)
+	position = lerp(position, pos, 0.1)
 	skin.flip_h = flip
+	#life.value = hp
+
+@rpc("any_peer", "call_local", "reliable")
+func _kill_it():
+	queue_free()
+
+@rpc("any_peer", "call_local", "reliable")
+func _damage(hp: float) -> void:
 	life.value = hp
-	if life.value <= 0:
-		queue_free()
+	skin.modulate = Color(1, 0.3, 0.3)
+	await get_tree().create_timer(0.4).timeout
+	skin.modulate = Color(1, 1, 1)
 
 func _health(_damage):
+	#print("damage to enemy: ", _damage, " vida restante: ", life.value)
 	# Ahora al enemigo solo lo podemos dañar una vez con cada swing
 	if !iframes:
 		life.value -= _damage
+		skin.modulate = Color(1, 0.3, 0.3)
 		if life.value <= 0:
 			if type == 1:
 				FloorManager.enemy_defeated()
 			queue_free()
+			_kill_it.rpc()
 		iframes = true
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.4).timeout
+		skin.modulate = Color(1, 1, 1)
 		iframes = false
 
 func _on_collision_area_entered(_area: Area2D) -> void:
 	if _area.is_in_group("hero") and type != 0:
 		_health(_area.damage)
+		_damage.rpc(life.value)
 		knock_back = true
 		enemy_direction = _area.global_position
 

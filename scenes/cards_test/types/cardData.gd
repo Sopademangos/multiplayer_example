@@ -2,6 +2,7 @@ extends Resource
 class_name CardData
 
 @export var ruta: String
+@export var boss: bool = false
 @export var nombre: String
 @export_enum("trap", "enemy", "box") var tipo
 @export var costo: int

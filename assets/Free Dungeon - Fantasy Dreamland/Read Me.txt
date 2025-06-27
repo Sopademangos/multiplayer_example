@@ -19,13 +19,13 @@ ElvGames
 
 
 License:
-    You are free to use, personal or commercial projects.
-    You can edit/modify to fit your game.
-    Credits to ElvGames.
+	You are free to use, personal or commercial projects.
+	You can edit/modify to fit your game.
+	Credits to ElvGames.
 
 You cannot:
-    Sell this asset pack, not even modified.
-    Claim this asset is yours.
+	Sell this asset pack, not even modified.
+	Claim this asset is yours.
 
 Follow me on Twitter!
 https://twitter.com/ElvGames

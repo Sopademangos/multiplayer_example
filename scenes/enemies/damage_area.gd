@@ -2,7 +2,7 @@ extends Area2D
 
 @export var _name: String
 @export var damage: int = 0
-@export var type: int = 1
+@export var type: int = 0
 @export var bear_trap: bool = false
 @export var temporizador: bool = false
 @onready var collision_body: CollisionShape2D = $Collision_body
@@ -31,6 +31,9 @@ func _process(_delta: float) -> void:
 			get_parent().queue_free()
 	if bear_trap:
 		collision_body.disabled = true
+		await get_tree().create_timer(3).timeout
+		use = 0
+		bear_trap = false
 	if _name == "Bear Trap":
 		bear_trap_skin.visible = true
 	elif _name == "Fire Trap":

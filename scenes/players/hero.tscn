@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bao31fg0iuauf"]
+[gd_scene load_steps=15 format=3 uid="uid://bao31fg0iuauf"]
 
 [ext_resource type="Script" uid="uid://dbb5lq6vtvcwg" path="res://scenes/players/hero.gd" id="1_1cpic"]
 [ext_resource type="Texture2D" uid="uid://ndp2f5vmsroj" path="res://assets/Hero.png" id="2_fhkh4"]
 [ext_resource type="Script" uid="uid://bksa6jq3anl27" path="res://scenes/players/weapon.gd" id="3_tqfqc"]
 [ext_resource type="Texture2D" uid="uid://5j6pfrgttwfo" path="res://scenes/players/Sword--001.png" id="4_tqfqc"]
+[ext_resource type="FontFile" uid="uid://cham44u3aocqe" path="res://assets/fonts/monogram.ttf" id="5_cfran"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjjdy"]
 size = Vector2(32, 51)
@@ -123,6 +124,7 @@ shape = SubResource("CapsuleShape2D_g48mx")
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_tqfqc")
+damage = 40
 
 [node name="skin" type="Sprite2D" parent="Arma"]
 position = Vector2(89, -3)
@@ -140,15 +142,20 @@ offset_top = -88.0
 offset_right = 87.0
 offset_bottom = -65.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_cfran")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/background = SubResource("StyleBoxFlat_qjjdy")
 value = 100.0
 
 [node name="Label" type="Label" parent="."]
-offset_left = -32.0
-offset_top = 39.0
-offset_right = 30.0
-offset_bottom = 62.0
+offset_left = -45.0
+offset_top = 29.0
+offset_right = 51.0
+offset_bottom = 55.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_cfran")
+theme_override_font_sizes/font_size = 32
 text = "Player 1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

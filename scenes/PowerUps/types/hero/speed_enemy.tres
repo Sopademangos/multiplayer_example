@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PowerUp" load_steps=2 format=3 uid="uid://bwdw2lseceewm"]
+
+[ext_resource type="Script" uid="uid://cayqsr4gjyh45" path="res://scenes/PowerUps/types/powerUp.gd" id="1_1wba2"]
+
+[resource]
+script = ExtResource("1_1wba2")
+player = "Hero"
+habilidad = "Speed Nerf"
+info = "Enemies are slowed"
+damage = 0
+speed = 0
+timer_speed = 0.0
+health = 0
+damage_nerf = 0
+speed_nerf = 2000
+metadata/_custom_type_script = "uid://cayqsr4gjyh45"

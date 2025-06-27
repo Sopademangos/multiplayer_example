@@ -15,10 +15,7 @@ func _ready() -> void:
 	_name.text = datos.nombre
 	_damage.text = str(datos.daño)
 	_life.text = str(datos.hp)
-	#if datos.nombre == "Box":
-		#_life.text = "∞"
 	_coste.text = str(datos.costo)
-	# Nine patch rect
 	nine_patch.texture = datos.textura
 	nine_patch.region_rect = Rect2(datos.x, datos.y, datos.w, datos.h)
 	nine_patch.patch_margin_left = datos.patch_margin_left

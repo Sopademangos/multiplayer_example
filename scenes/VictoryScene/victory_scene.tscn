@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cery44522rywn"]
+[gd_scene load_steps=7 format=3 uid="uid://cery44522rywn"]
 
-[ext_resource type="Script" uid="uid://cu2wjnilr0ahh" path="res://scenes/VictoryScene/victory_scene.gd" id="1_i8nys"]
+[ext_resource type="Script" uid="uid://wxg18b31oa7n" path="res://scenes/VictoryScene/heroes_powerups.gd" id="1_u35fn"]
+[ext_resource type="PackedScene" uid="uid://d1t5g8dnwohl4" path="res://scenes/PowerUps/powerup.tscn" id="2_u35fn"]
 
 [sub_resource type="Animation" id="Animation_8paxp"]
 length = 0.001
@@ -64,7 +65,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i8nys")
+script = ExtResource("1_u35fn")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -98,6 +99,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -120,3 +122,17 @@ text = "Retry"
 [node name="Quit" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="Buttons" type="Node2D" parent="."]
+visible = false
+
+[node name="enemy_powerup" type="Node2D" parent="."]
+visible = false
+
+[node name="enemy_powerup" parent="enemy_powerup" instance=ExtResource("2_u35fn")]
+position = Vector2(245, 90)
+
+[node name="TextureButton" parent="enemy_powerup/enemy_powerup" index="1"]
+disabled = true
+
+[editable path="enemy_powerup/enemy_powerup"]

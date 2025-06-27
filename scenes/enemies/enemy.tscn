@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnhtqy88efs1i"]
+[gd_scene load_steps=17 format=3 uid="uid://dnhtqy88efs1i"]
 
 [ext_resource type="Script" uid="uid://dr0mda1wj4xbw" path="res://scenes/enemies/enemy.gd" id="1_luycg"]
 [ext_resource type="Texture2D" uid="uid://b85xy2igool77" path="res://assets/enemies/slime.png" id="2_fcftc"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://b47ak32yghbr1" path="res://assets/enemies/smoke_bomb.png" id="3_lu5c6"]
 [ext_resource type="Texture2D" uid="uid://dwbokre1voglo" path="res://assets/Traps/Bear_Trap.png" id="4_nb6gf"]
 [ext_resource type="Texture2D" uid="uid://dff3jtxkqpdgb" path="res://assets/Traps/Fire_Trap.png" id="5_jt03m"]
+[ext_resource type="FontFile" uid="uid://cham44u3aocqe" path="res://assets/fonts/monogram.ttf" id="7_jt03m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8e3ao"]
-radius = 42.003
+radius = 104.145
 
 [sub_resource type="Animation" id="Animation_n7575"]
 length = 0.001
@@ -207,7 +208,9 @@ offset_top = -92.0
 offset_right = 54.0
 offset_bottom = -65.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_jt03m")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/background = SubResource("StyleBoxFlat_luycg")
 value = 100.0
 
@@ -217,7 +220,6 @@ target_desired_distance = 3.0
 path_max_distance = 10.0
 simplify_path = true
 simplify_epsilon = 5.0
-debug_enabled = true
 
 [node name="Navigation_timer" type="Timer" parent="."]
 wait_time = 0.5

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://chlhbpu17idav"]
+
+[ext_resource type="Script" uid="uid://c2hncbjlpblkv" path="res://scenes/cards_test/types/cardData.gd" id="1_podsc"]
+[ext_resource type="Texture2D" uid="uid://d30gvrwtcrtgi" path="res://assets/card_skins/card_container.png" id="2_lc5u6"]
+
+[resource]
+script = ExtResource("1_podsc")
+ruta = "res://scenes/cards_test/types/boss.tres"
+boss = true
+nombre = "Boss"
+tipo = 1
+costo = 20
+hp = 3000
+"daño" = 15
+velocidad = 1000
+icono = "res://assets/Free-Cursed-Land-Top-Down-Pixel-Art-Tileset/Objects_separetely/Bones_shadow1_1.png"
+escala_de_la_figura = Vector2(0, 0)
+textura = ExtResource("2_lc5u6")
+x = 52.0
+y = 26.0
+w = 26.0
+h = 26.0
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+colision = 1
+radio = 113.0
+altura = 310.0
+"tamaño" = Vector2(0, 0)
+posicion_colision = Vector2(9, -32)
+metadata/_custom_type_script = "uid://c2hncbjlpblkv"

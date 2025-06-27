@@ -16,6 +16,7 @@ var start_angle: float = 0.0
 var end_angle: float = 0.0
 
 func _ready():
+	damage += GlobalVar.hero_damage_up
 	# Important: Disable monitoring at start so weapon doesn't deal damage continuously
 	monitoring = false
 	monitorable = false

@@ -14,6 +14,16 @@ var floor_scenes = {
 		"res://scenes/levels/level2/level2_2.tscn",
 		"res://scenes/levels/level2/level2_3.tscn"
 	],
+	3: [
+		"res://scenes/levels/level3/level3_1.tscn",
+		"res://scenes/levels/level3/level3_2.tscn",
+		"res://scenes/levels/level3/level3_3.tscn"
+	],
+	4: [
+		"res://scenes/levels/level_boss/level_boss.tscn",
+		"res://scenes/levels/level_boss/level_boss.tscn",
+		"res://scenes/levels/level_boss/level_boss.tscn"
+	]
 }
 
 var levels_to_play = []
@@ -48,17 +58,38 @@ func enemy_defeated():
 		enemies_remaining -= 1
 		print("Enemy defeated. Remaining: ", enemies_remaining)
 		if enemies_remaining <= 0:
-			current_floor += 1
 			await get_tree().create_timer(1.5).timeout
-			delete_current_scene.rpc()
+			if levels_to_play.size() > 0:
+				_heros_victory.rpc()
+			else:
+				_run_ended.rpc()
 			return true
 		else:
 			return false
 
-@rpc("authority", "call_local", "reliable")
+# Called when the hero is defeated
+func hero_defeated():
+	if !is_changing_floor:
+		await get_tree().create_timer(1.5).timeout
+		if levels_to_play.size() > 0:
+			_villains_victory.rpc()
+		else:
+			_run_ended.rpc()
+
+func _continue():
+	delete_current_scene.rpc()
+
+@rpc("any_peer", "call_local", "reliable")
 func delete_current_scene():
+	current_floor += 1
 	get_tree().current_scene.get_child(1).queue_free()
 	_on_floor_completed()
+	var root = get_tree().current_scene
+	var ui = root.get_child(0)
+	var victory_scene = ui.get_child(1)
+	var death_scene = ui.get_child(0)
+	victory_scene.visible = false
+	death_scene.visible = false
 
 # Load a specific floor
 @rpc("any_peer", "call_local", "reliable")
@@ -104,17 +135,28 @@ func reposition_players():
 # Handle floor completion (server only)
 func _on_floor_completed():
 	if multiplayer.is_server():
-		print("Floor completed!")
-		if current_floor <= floor_scenes.size():
-			load_specific_floor.rpc()
-		else:
-			_heros_victory.rpc()
+		load_specific_floor.rpc()
 
 @rpc("any_peer", "call_local", "reliable")
 func _heros_victory() -> void:
 	var root = get_tree().current_scene
 	var ui = root.get_child(0)
 	var victory_scene = ui.get_child(1)
+	victory_scene.elegir_cartas_aleatorias()
 	victory_scene.visible = true
 	var animation_victory_scene = victory_scene.get_child(1)
 	animation_victory_scene.play("fade_in")
+
+@rpc("any_peer", "call_local", "reliable")
+func _villains_victory() -> void:
+	var root = get_tree().current_scene
+	var ui = root.get_child(0)
+	var death_scene = ui.get_child(0)
+	death_scene.elegir_cartas_aleatorias()
+	death_scene.visible = true
+	var animation_death_scene = death_scene.get_child(1)
+	animation_death_scene.play("fade_in")
+
+@rpc("any_peer", "call_local", "reliable")
+func _run_ended(): #Terminamos la partida y volvemos al menu
+	get_tree().change_scene_to_file("res://ui/credits.tscn")

@@ -9,6 +9,7 @@ script = ExtResource("2_hvxmk")
 
 [node name="Label" parent="MarginContainer2/VBoxContainer/Panel" index="0"]
 theme = ExtResource("3_74u3g")
+theme_override_constants/outline_size = 12
 text = "Credits"
 
 [node name="BackButton" parent="MarginContainer2/VBoxContainer/Panel" index="1"]
@@ -20,17 +21,34 @@ theme_type_variation = &"Zero"
 [node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" type="RichTextLabel" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("3_74u3g")
+theme_override_constants/outline_size = 8
 bbcode_enabled = true
 text = "[center]
 [b]Game development[/b]
+
 Antonio Cormatches
 Jorge Contreras
 Nicolas Espinoza
 
+
 [b]Multiplayer template[/b]
+
 Elías Zelada
 
+
 [b]Music[/b]
+
 Jorge Contreras
+
+
+[b]Assets[/b]
+
+https://0x72.itch.io/dungeontileset-ii
+https://free-game-assets.itch.io/free-cursed-land-top-down-pixel-art-tileset
+
+
+[b]Font[/b]
+
+https://datagoblin.itch.io/monogram
 
 [/center]"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PowerUp" load_steps=2 format=3 uid="uid://cqgq2nome1awc"]
+
+[ext_resource type="Script" uid="uid://cayqsr4gjyh45" path="res://scenes/PowerUps/types/powerUp.gd" id="1_t4d1a"]
+
+[resource]
+script = ExtResource("1_t4d1a")
+player = "Villain"
+habilidad = "Health"
+info = "Minions gain extra health, making them tougher"
+damage = 0
+speed = 0
+timer_speed = 0
+health = 50
+damage_nerf = 0
+speed_nerf = 0
+metadata/_custom_type_script = "uid://cayqsr4gjyh45"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PowerUp" load_steps=2 format=3 uid="uid://sc1cow6j6syd"]
+
+[ext_resource type="Script" uid="uid://cayqsr4gjyh45" path="res://scenes/PowerUps/types/powerUp.gd" id="1_n31do"]
+
+[resource]
+script = ExtResource("1_n31do")
+player = "Hero"
+habilidad = "Health"
+info = "Gain more health, take more hits"
+damage = 0
+speed = 0
+timer_speed = 0
+health = 100
+damage_nerf = 0
+speed_nerf = 0
+metadata/_custom_type_script = "uid://cayqsr4gjyh45"
