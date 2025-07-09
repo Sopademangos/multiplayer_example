@@ -9,6 +9,7 @@ var is_active := true
 func _ready() -> void:
 	await get_tree().create_timer(7).timeout
 	intro_audio.play()
+	scroll_speed = Vector2(50, 0)
 	
 func _process(delta):
 	if !is_active:

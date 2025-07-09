@@ -11,6 +11,7 @@ extends Control
 @onready var how_to_play_scene: Control = $How_to_play
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var margin_container_3: MarginContainer = $MarginContainer3
+@onready var camera_2d: Camera2D = $Camera2D
 
 func _ready() -> void:
 	#if Game.multiplayer_test:
