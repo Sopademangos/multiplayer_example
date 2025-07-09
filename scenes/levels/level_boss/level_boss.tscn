@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://hejt8ogxmbxf" path="res://scenes/tileset/test.tres" id="1_wta0a"]
 [ext_resource type="PackedScene" uid="uid://dnhtqy88efs1i" path="res://scenes/enemies/enemy.tscn" id="2_kyutd"]
-[ext_resource type="Resource" uid="uid://chlhbpu17idav" path="res://scenes/cards_test/types/boss.tres" id="3_8v4ct"]
+[ext_resource type="Resource" uid="uid://chlhbpu17idav" path="res://scenes/cards/types/boss.tres" id="3_8v4ct"]
 [ext_resource type="PackedScene" uid="uid://bao31fg0iuauf" path="res://scenes/players/hero.tscn" id="5_nbuje"]
 [ext_resource type="PackedScene" uid="uid://blqxos8twrgxl" path="res://scenes/players/villian.tscn" id="6_cr2jj"]
 

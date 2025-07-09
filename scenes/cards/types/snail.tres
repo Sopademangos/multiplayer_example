@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://it4i5cve6doy"]
 
-[ext_resource type="Script" uid="uid://c2hncbjlpblkv" path="res://scenes/cards_test/types/cardData.gd" id="1_ipaw7"]
+[ext_resource type="Script" uid="uid://c2hncbjlpblkv" path="res://scenes/cards/types/cardData.gd" id="1_ipaw7"]
 [ext_resource type="Texture2D" uid="uid://d30gvrwtcrtgi" path="res://assets/card_skins/card_container.png" id="2_admv1"]
 
 [resource]
 script = ExtResource("1_ipaw7")
-ruta = "res://scenes/cards_test/types/snail.tres"
+ruta = "res://scenes/cards/types/snail.tres"
+boss = false
 nombre = "Snail"
 tipo = 1
 costo = 2

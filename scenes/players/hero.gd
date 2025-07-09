@@ -92,7 +92,7 @@ func start_dash(direction, delta):
 	collision_layer |= 2
 	collision_mask |= 2
 
-@rpc("unreliable_ordered")
+@rpc("any_peer","call_local","unreliable_ordered")
 func _send_data(dir, pos: Vector2, flip_h: bool, hp: float) -> void:
 	if dir != Vector2.ZERO:
 		animation_player.play("run")
@@ -102,7 +102,7 @@ func _send_data(dir, pos: Vector2, flip_h: bool, hp: float) -> void:
 	skin.flip_h = flip_h
 	life.value = hp
 
-@rpc("unreliable_ordered")
+@rpc("any_peer","call_local","unreliable_ordered")
 func _trigger_death() -> void:
 	animation_player.play("die")
 	FloorManager.hero_defeated()
@@ -111,9 +111,9 @@ func _trigger_death() -> void:
 func _health(_damage):
 	life.value -= _damage
 	if life.value <= 0:
-		_trigger_death()
 		_trigger_death.rpc()
-		queue_free()
+		#await get_tree().create_timer(0.2).timeout
+		#_trigger_death()
 
 func _on_area_daño_body_entered(_body: Node2D) -> void:
 	if _body.is_in_group("enemy"):

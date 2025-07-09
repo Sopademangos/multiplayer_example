@@ -2,7 +2,7 @@ extends Area2D
 
 @export var _name: String
 @export var damage: int = 0
-@export var type: int = 0
+@export var type: int = -1
 @export var bear_trap: bool = false
 @export var temporizador: bool = false
 @onready var collision_body: CollisionShape2D = $Collision_body

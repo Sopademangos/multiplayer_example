@@ -2,8 +2,8 @@
 
 [ext_resource type="TileSet" uid="uid://hejt8ogxmbxf" path="res://scenes/tileset/test.tres" id="1_4vn6v"]
 [ext_resource type="PackedScene" uid="uid://dnhtqy88efs1i" path="res://scenes/enemies/enemy.tscn" id="2_1akwm"]
-[ext_resource type="Resource" uid="uid://flbcvih1vnd5" path="res://scenes/cards_test/types/slime.tres" id="3_e781u"]
-[ext_resource type="Resource" uid="uid://mmoi8ajmpr34" path="res://scenes/cards_test/types/tank.tres" id="4_jjgq6"]
+[ext_resource type="Resource" uid="uid://flbcvih1vnd5" path="res://scenes/cards/types/slime.tres" id="3_e781u"]
+[ext_resource type="Resource" uid="uid://mmoi8ajmpr34" path="res://scenes/cards/types/tank.tres" id="4_jjgq6"]
 [ext_resource type="PackedScene" uid="uid://bao31fg0iuauf" path="res://scenes/players/hero.tscn" id="5_m6di2"]
 [ext_resource type="PackedScene" uid="uid://blqxos8twrgxl" path="res://scenes/players/villian.tscn" id="6_2t7iu"]
 

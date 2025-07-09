@@ -2,18 +2,18 @@ extends Control
 
 @onready var spawn: Node2D = $"../Spawn"
 
-const card_scene = preload("res://scenes/cards_test/card_test.tscn")
+const card_scene = preload("res://scenes/cards/card.tscn")
 
 var cards = [
-	"res://scenes/cards_test/types/bear_trap.tres",
-	"res://scenes/cards_test/types/beast.tres",
-	"res://scenes/cards_test/types/bomb.tres", 
-	"res://scenes/cards_test/types/box.tres",
-	"res://scenes/cards_test/types/fire_trap.tres",
-	"res://scenes/cards_test/types/slime.tres",
-	"res://scenes/cards_test/types/snail.tres",
-	"res://scenes/cards_test/types/spikes.tres",
-	"res://scenes/cards_test/types/tank.tres"
+	"res://scenes/cards/types/bear_trap.tres",
+	"res://scenes/cards/types/beast.tres",
+	"res://scenes/cards/types/bomb.tres", 
+	"res://scenes/cards/types/box.tres",
+	"res://scenes/cards/types/fire_trap.tres",
+	"res://scenes/cards/types/slime.tres",
+	"res://scenes/cards/types/snail.tres",
+	"res://scenes/cards/types/spikes.tres",
+	"res://scenes/cards/types/tank.tres"
 ]
 
 var new_card: CardData

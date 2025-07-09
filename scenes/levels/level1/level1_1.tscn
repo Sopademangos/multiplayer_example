@@ -2,10 +2,10 @@
 
 [ext_resource type="TileSet" uid="uid://hejt8ogxmbxf" path="res://scenes/tileset/test.tres" id="1_lqrgq"]
 [ext_resource type="PackedScene" uid="uid://dnhtqy88efs1i" path="res://scenes/enemies/enemy.tscn" id="2_8v1n7"]
-[ext_resource type="Resource" uid="uid://flbcvih1vnd5" path="res://scenes/cards_test/types/slime.tres" id="3_2jfbe"]
+[ext_resource type="Resource" uid="uid://flbcvih1vnd5" path="res://scenes/cards/types/slime.tres" id="3_2jfbe"]
 [ext_resource type="PackedScene" uid="uid://bao31fg0iuauf" path="res://scenes/players/hero.tscn" id="3_nm8j4"]
 [ext_resource type="PackedScene" uid="uid://blqxos8twrgxl" path="res://scenes/players/villian.tscn" id="4_2jfbe"]
-[ext_resource type="Resource" uid="uid://cfi787kd4vmkc" path="res://scenes/cards_test/types/bear_trap.tres" id="4_tyiyh"]
+[ext_resource type="Resource" uid="uid://cfi787kd4vmkc" path="res://scenes/cards/types/bear_trap.tres" id="4_tyiyh"]
 
 [node name="Level1_1" type="Node2D"]
 

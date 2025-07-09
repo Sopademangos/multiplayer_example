@@ -1,35 +1,126 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7pnewsephauy"]
+[gd_scene load_steps=9 format=3 uid="uid://du2384hll87di"]
 
-[ext_resource type="Script" uid="uid://dg8fbs1m8chvb" path="res://scenes/cards/card.gd" id="1_45qsb"]
+[ext_resource type="Script" uid="uid://uh01divimnq3" path="res://scenes/cards/card.gd" id="1_olajg"]
+[ext_resource type="Texture2D" uid="uid://d30gvrwtcrtgi" path="res://assets/card_skins/card_container.png" id="2_waaro"]
+[ext_resource type="Texture2D" uid="uid://by7ucvsh7mokx" path="res://assets/card_skins/box.png" id="3_4ucvl"]
+[ext_resource type="Texture2D" uid="uid://btwglum7cspd3" path="res://assets/card_skins/damage.png" id="4_488fa"]
+[ext_resource type="Texture2D" uid="uid://c824glfn78ksk" path="res://assets/card_skins/life.png" id="5_oywlg"]
+[ext_resource type="Texture2D" uid="uid://b17md32arf7h2" path="res://assets/card_skins/coins.png" id="6_ijwc0"]
+[ext_resource type="FontFile" uid="uid://cham44u3aocqe" path="res://assets/fonts/monogram.ttf" id="7_yb2b4"]
 
-[node name="Card" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_45qsb")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02s2a"]
+size = Vector2(39, 55)
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 1196.0
-offset_bottom = 694.0
+[node name="card" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_olajg")
 
-[node name="CardName" type="Label" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Skin" type="Node2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(3.09682, 3.39768)
 
-[node name="Label2" type="Label" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="NinePatchRect" type="NinePatchRect" parent="Skin"]
+offset_left = -19.0
+offset_top = -21.0
+offset_right = 20.0
+offset_bottom = 34.0
+texture = ExtResource("2_waaro")
+region_rect = Rect2(26, 0, 26, 26)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
 
-[node name="CardCost" type="Label" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Skin" type="Sprite2D" parent="Skin"]
+position = Vector2(0, 4)
+texture = ExtResource("3_4ucvl")
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
-layout_mode = 0
-offset_right = 439.0
-offset_bottom = 225.0
+[node name="Top_of_card" type="Sprite2D" parent="Skin"]
+position = Vector2(0.5, -9.7)
+scale = Vector2(1.46154, 0.730769)
+texture = ExtResource("2_waaro")
+hframes = 3
+vframes = 3
+frame = 6
+
+[node name="Damage" type="Sprite2D" parent="Skin"]
+position = Vector2(15.6843, -14.6318)
+scale = Vector2(0.396015, 0.349743)
+texture = ExtResource("4_488fa")
+
+[node name="Life" type="Sprite2D" parent="Skin"]
+position = Vector2(-13.8391, -14.6318)
+scale = Vector2(0.482425, 0.474243)
+texture = ExtResource("5_oywlg")
+
+[node name="Bottom_of_card" type="Sprite2D" parent="Skin"]
+position = Vector2(0.5, 22.5)
+scale = Vector2(1.46154, 0.884615)
+texture = ExtResource("2_waaro")
+hframes = 3
+vframes = 3
+frame = 7
+
+[node name="Coste" type="Sprite2D" parent="Skin"]
+position = Vector2(-1.19209e-07, 34.1409)
+scale = Vector2(1.83526, 1.4753)
+texture = ExtResource("6_ijwc0")
+
+[node name="Name" type="Label" parent="."]
+offset_left = -90.0
+offset_top = 58.5714
+offset_right = 19.0
+offset_bottom = 81.5714
+scale = Vector2(1.7, 1.7)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("7_yb2b4")
+theme_override_font_sizes/font_size = 16
+text = "Just a box"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Damage" type="Label" parent="."]
+offset_left = -18.5714
+offset_top = -70.0
+offset_right = 40.4286
+offset_bottom = -44.0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("7_yb2b4")
+theme_override_font_sizes/font_size = 32
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Life" type="Label" parent="."]
+offset_left = -30.0
+offset_top = -76.0
+offset_right = 19.0
+offset_bottom = -38.0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("7_yb2b4")
+theme_override_font_sizes/font_size = 32
+text = "∞"
+vertical_alignment = 1
+
+[node name="Coste" type="Label" parent="."]
+offset_left = -10.0
+offset_top = 95.0
+offset_right = 14.0
+offset_bottom = 121.0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("7_yb2b4")
+theme_override_font_sizes/font_size = 32
+text = "3"
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -6)
+scale = Vector2(3.09682, 3.39768)
+collision_layer = 9
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 6.5)
+shape = SubResource("RectangleShape2D_02s2a")
