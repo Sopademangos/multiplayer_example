@@ -159,4 +159,5 @@ func _villains_victory() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func _run_ended(): #Terminamos la partida y volvemos al menu
+	GlobalVar.creditos = true
 	get_tree().change_scene_to_file("res://ui/credits.tscn")

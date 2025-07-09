@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://chlhbpu17idav"]
 
-[ext_resource type="Script" uid="uid://c2hncbjlpblkv" path="res://scenes/cards_test/types/cardData.gd" id="1_podsc"]
+[ext_resource type="Script" uid="uid://c2hncbjlpblkv" path="res://scenes/cards/types/cardData.gd" id="1_podsc"]
 [ext_resource type="Texture2D" uid="uid://d30gvrwtcrtgi" path="res://assets/card_skins/card_container.png" id="2_lc5u6"]
 
 [resource]
 script = ExtResource("1_podsc")
-ruta = "res://scenes/cards_test/types/boss.tres"
+ruta = "res://scenes/cards/types/boss.tres"
 boss = true
 nombre = "Boss"
 tipo = 1

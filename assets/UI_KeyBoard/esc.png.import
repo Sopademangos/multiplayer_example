@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7p56witn6g0r"
-path="res://.godot/imported/herovillainicons.png-ccad0c3bd2ee36c6cf4a157eb4775126.ctex"
+uid="uid://dqalpjem33yj2"
+path="res://.godot/imported/esc.png-6e938d5d46a4bad32cafa742e6349bb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/herovillainicons.png"
-dest_files=["res://.godot/imported/herovillainicons.png-ccad0c3bd2ee36c6cf4a157eb4775126.ctex"]
+source_file="res://assets/UI_KeyBoard/esc.png"
+dest_files=["res://.godot/imported/esc.png-6e938d5d46a4bad32cafa742e6349bb1.ctex"]
 
 [params]
 

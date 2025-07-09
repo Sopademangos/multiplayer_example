@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://blqxos8twrgxl"]
 
 [ext_resource type="Script" uid="uid://c4ksskqufau7s" path="res://scenes/players/villian.gd" id="1_066ng"]
-[ext_resource type="Script" uid="uid://g7yb5w67nxck" path="res://scenes/cards_test/deck.gd" id="2_2g2jx"]
+[ext_resource type="Script" uid="uid://g7yb5w67nxck" path="res://scenes/cards/deck.gd" id="2_2g2jx"]
 [ext_resource type="FontFile" uid="uid://cham44u3aocqe" path="res://assets/fonts/monogram.ttf" id="3_85yng"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02s2a"]

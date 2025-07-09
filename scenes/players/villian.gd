@@ -10,7 +10,7 @@ var card_dragged = null
 var result
 var cards = []
 var new_card: CardData
-const card_scene = preload("res://scenes/cards_test/card_test.tscn")
+const card_scene = preload("res://scenes/cards/card.tscn")
 
 func _ready() -> void:
 	if Game.players[1].role == 2:

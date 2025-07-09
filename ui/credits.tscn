@@ -1,11 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj66nte78u87x"]
+[gd_scene load_steps=7 format=3 uid="uid://dj66nte78u87x"]
 
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_m3vk0"]
 [ext_resource type="Script" uid="uid://cuqvj8grm28qy" path="res://ui/credits.gd" id="2_hvxmk"]
 [ext_resource type="Theme" uid="uid://dfrv1wv3x08o4" path="res://ui/menu.tres" id="3_74u3g"]
 
+[sub_resource type="Animation" id="Animation_1bagf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_74u3g"]
+resource_name = "fade_in"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_icdkc"]
+_data = {
+&"RESET": SubResource("Animation_1bagf"),
+&"fade_in": SubResource("Animation_74u3g")
+}
+
 [node name="CreditsScreen" instance=ExtResource("1_m3vk0")]
 script = ExtResource("2_hvxmk")
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1172.0
+offset_top = -638.0
+offset_right = 1271.0
+offset_bottom = 644.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_icdkc")
+}
+
+[node name="MarginContainer2" parent="." index="2"]
+visible = false
 
 [node name="Label" parent="MarginContainer2/VBoxContainer/Panel" index="0"]
 theme = ExtResource("3_74u3g")
@@ -26,9 +84,9 @@ bbcode_enabled = true
 text = "[center]
 [b]Game development[/b]
 
-Antonio Cormatches
+Nicolás Espinoza
 Jorge Contreras
-Nicolas Espinoza
+Antonio Cormatches
 
 
 [b]Multiplayer template[/b]
@@ -44,7 +102,18 @@ Jorge Contreras
 [b]Assets[/b]
 
 https://0x72.itch.io/dungeontileset-ii
+
 https://free-game-assets.itch.io/free-cursed-land-top-down-pixel-art-tileset
+
+https://elvgames.itch.io/free-fantasy-dreamland-dungeon
+
+https://elvgames.itch.io/cellar-tileset-16x16-pixelart
+
+https://stealthix.itch.io/animated-traps
+
+https://sagak-art-pururu.itch.io/cardrpg-ui
+
+https://cazwolf.itch.io/caz-pixel-keyboard
 
 
 [b]Font[/b]
