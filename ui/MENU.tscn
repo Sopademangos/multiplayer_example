@@ -882,3 +882,5 @@ stream = ExtResource("7_y5fu0")
 
 [node name="loop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_akhs7")
+
+[connection signal="finished" from="loop" to="ParallaxBackground" method="_on_loop_finished"]
